@@ -11,21 +11,21 @@ import RxSwift
 
 public class RepositoriesClient: ApiClient {
 
-  public func getAllForCurrentUser(visibility: Visibility? = nil, affiliations: [Affiliation]? = nil, type: RepoType? = nil, sort: Sort? = nil, direction: Direction? = nil) -> Observable<[Repository]> {
+  public func getAllForCurrentUser(visibility: Visibility? = nil, affiliations: [Affiliation]? = nil, type: CurrentUserRepoType? = nil, sort: Sort? = nil, direction: Direction? = nil) -> Observable<[Repository]> {
     let affiliation = affiliations.map { CustomApiParameter.joinedParameters(fromParameters: $0) }
     return get(apiUrl: .currentUserRepositories, parameters: [visibility, affiliation, type, sort, direction])
   }
 
-  public func getRepositories(forUser username: String) -> Observable<[Repository]> {
-    return get(apiUrl: .userRepositories(username: username))
+  public func getRepositories(forUser username: String, type: UserRepoType? = nil, sort: Sort? = nil, direction: Direction? = nil) -> Observable<[Repository]> {
+    return get(apiUrl: .userRepositories(username: username), parameters: [type, sort, direction])
   }
 
-  public func getRepositories(forOrganization organization: String) -> Observable<[Repository]> {
-    return get(apiUrl: .organizationRepositories(organization: organization))
+  public func getRepositories(forOrganization organization: String, type: OrgRepoType? = nil) -> Observable<[Repository]> {
+    return get(apiUrl: .organizationRepositories(organization: organization), parameters: [type])
   }
 
-  public func getAllRepositories() -> Observable<[Repository]> {
-    return get(apiUrl: .repositories)
+  public func getAllRepositories(since repositoryId: Int? = nil) -> Observable<[Repository]> {
+    return get(apiUrl: .repositories, parameters: repositoryId.map({ [CustomApiParameter(name: "since", value: $0)] }))
   }
 
 }
@@ -48,7 +48,7 @@ public extension RepositoriesClient {
     case owner
   }
 
-  public enum RepoType: String, ApiParameter {
+  public enum CurrentUserRepoType: String, ApiParameter {
     public var name: String { return "type" }
 
     case all
@@ -56,6 +56,25 @@ public extension RepositoriesClient {
     case owner
     case `private`
     case `public`
+  }
+
+  public enum UserRepoType: String, ApiParameter {
+    public var name: String { return "type" }
+
+    case all
+    case member
+    case owner
+  }
+
+  public enum OrgRepoType: String, ApiParameter {
+    public var name: String { return "type" }
+
+    case all
+    case forks
+    case member
+    case `private`
+    case `public`
+    case source
   }
 
   public enum Sort: String, ApiParameter {

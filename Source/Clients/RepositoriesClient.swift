@@ -7,13 +7,14 @@
 //
 
 import Foundation
-
 import RxSwift
 
 public class RepositoriesClient: ApiClient {
 
-  public func getAllForCurrentUser() -> Observable<[Repository]> {
-    return get(apiUrl: .currentUserRepositories)
+  public func getAllForCurrentUser(visibility: Visibility? = nil, affiliations: [Affiliation]? = nil, type: RepoType? = nil, sort: Sort? = nil, direction: Direction? = nil) -> Observable<[Repository]> {
+    let affiliation = affiliations.map { CustomApiParameter.joinedParameters(fromParameters: $0) }
+    let queryDict = CustomApiParameter.queryDict(forParameters: [visibility, affiliation, type, sort, direction])
+    return get(apiUrl: .currentUserRepositories, query: queryDict)
   }
 
   public func getRepositories(forUser username: String) -> Observable<[Repository]> {
@@ -28,4 +29,49 @@ public class RepositoriesClient: ApiClient {
     return get(apiUrl: .repositories)
   }
 
+}
+
+public extension RepositoriesClient {
+  
+  public enum Visibility: String, ApiParameter {
+    public var name: String { return "visibility" }
+
+    case all
+    case `private`
+    case `public`
+  }
+
+  public enum Affiliation: String, ApiParameter {
+    public var name: String { return "affiliation" }
+
+    case collaborator
+    case organizationMember = "organization_member"
+    case owner
+  }
+
+  public enum RepoType: String, ApiParameter {
+    public var name: String { return "type" }
+
+    case all
+    case member
+    case owner
+    case `private`
+    case `public`
+  }
+
+  public enum Sort: String, ApiParameter {
+    public var name: String { return "sort" }
+
+    case created
+    case fullName = "full_name"
+    case pushed
+    case updated
+  }
+
+  public enum Direction: String, ApiParameter {
+    public var name: String { return "direction" }
+
+    case ascending = "asc"
+    case descending = "desc"
+  }
 }

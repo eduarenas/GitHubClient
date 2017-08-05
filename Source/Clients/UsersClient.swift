@@ -11,6 +11,14 @@ import RxSwift
 public class UsersClient: ApiClient {
 
   public func getUser(username: String) -> Observable<User> {
-    return self.get(apiUrl: ApiUrl.user(username: username))
+    return get(apiUrl: ApiUrl.user(username: username))
+  }
+
+  public func getCurrentUser() -> Observable<User> {
+    return get(apiUrl: ApiUrl.currentUser)
+  }
+
+  public func getAllUsers() -> Observable<[User]> {
+    return get(apiUrl: ApiUrl.users)
   }
 }

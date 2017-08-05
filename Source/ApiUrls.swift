@@ -17,6 +17,7 @@ enum ApiUrl {
   case organizationRepositories(organization: String)
 
   // Users
+  case currentUser
   case user(username: String)
   case users
   
@@ -25,6 +26,7 @@ enum ApiUrl {
     case .currentUserRepositories: return ApiUrl.fullPath(from: ["user", "repos"])
     case .userRepositories(let username): return ApiUrl.fullPath(from: ["users", username, "repos"])
     case .organizationRepositories(let organization): return ApiUrl.fullPath(from: ["orgs", organization, "repos"])
+    case .currentUser: return ApiUrl.fullPath(from: ["user"])
     case .user(let username): return ApiUrl.fullPath(from: ["users", username])
     case .users: return ApiUrl.fullPath(from: ["users"])
     }

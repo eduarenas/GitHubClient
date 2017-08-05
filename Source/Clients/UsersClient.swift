@@ -18,7 +18,7 @@ public class UsersClient: ApiClient {
     return get(apiUrl: ApiUrl.currentUser)
   }
 
-  public func getAllUsers() -> Observable<[User]> {
-    return get(apiUrl: ApiUrl.users)
+  public func getAllUsers(since userId: Int? = nil) -> Observable<[User]> {
+    return get(apiUrl: ApiUrl.users, query: userId.map({ ["since": $0] }))
   }
 }

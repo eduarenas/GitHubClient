@@ -5,8 +5,6 @@ public class ApiClient {
 
   let decoder = JSONDecoder()
 
-  private let baseURL = "https://api.github.com/"
-
   private let httpService = HTTPService()
   private let headers: [String: CustomStringConvertible]
 
@@ -16,14 +14,7 @@ public class ApiClient {
     decoder.dateDecodingStrategy = .iso8601
   }
 
-  func get(pathComponents: [CustomStringConvertible], query: [String: CustomStringConvertible]? = nil) -> Observable<(Data, URLResponse)> {
-    let url = fullPath(for: pathComponents)
-    return httpService.get(url: url, query: query, headers: headers)
-  }
-
-  private func fullPath(for components: [CustomStringConvertible]) -> String {
-    let endpointPath = components.map({ $0.description }).joined(separator: "/")
-    return baseURL.appending(endpointPath)
+  func get(apiUrl: ApiUrl, query: [String: CustomStringConvertible]? = nil) -> Observable<(Data, URLResponse)> {
+    return httpService.get(url: apiUrl.fullPath, query: query, headers: headers)
   }
 }
-

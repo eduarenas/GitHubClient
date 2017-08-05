@@ -13,8 +13,7 @@ public class RepositoriesClient: ApiClient {
 
   public func getAllForCurrentUser(visibility: Visibility? = nil, affiliations: [Affiliation]? = nil, type: RepoType? = nil, sort: Sort? = nil, direction: Direction? = nil) -> Observable<[Repository]> {
     let affiliation = affiliations.map { CustomApiParameter.joinedParameters(fromParameters: $0) }
-    let queryDict = CustomApiParameter.queryDict(forParameters: [visibility, affiliation, type, sort, direction])
-    return get(apiUrl: .currentUserRepositories, query: queryDict)
+    return get(apiUrl: .currentUserRepositories, parameters: [visibility, affiliation, type, sort, direction])
   }
 
   public func getRepositories(forUser username: String) -> Observable<[Repository]> {

@@ -22,7 +22,8 @@ public class ApiClient {
     decoder.dateDecodingStrategy = .iso8601
   }
 
-  func get(apiUrl: ApiUrl, query: [String: CustomStringConvertible]? = nil) -> Observable<(Data, URLResponse)> {
+  func get<T: Codable>(apiUrl: ApiUrl, query: [String: CustomStringConvertible]? = nil) -> Observable<T> {
     return httpService.get(url: apiUrl.fullPath, query: query, headers: headers)
+      .map { return try self.decoder.decode(T.self, from: $0.0) }
   }
 }

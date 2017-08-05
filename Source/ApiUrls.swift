@@ -11,7 +11,8 @@ import Foundation
 enum ApiUrl {
   private static let baseURL = "https://api.github.com/"
 
-  case user(String)
+  // Users
+  case user(username: String)
   case users
   
   var fullPath: String {

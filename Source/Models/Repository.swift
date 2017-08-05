@@ -36,7 +36,7 @@ public struct Repository: Codable {
   // public let permissions: RepositoryPermissions
   public let pushedAt: Date?
   // public let source: Repository?
-  public let size: Int
+  public let size: Int?
   public let sshUrl: String?
   public let stargazersCount: Int?
   public let subscribersCount: Int?

@@ -16,6 +16,7 @@ enum HTTPServiceError: Error {
 enum HTTPMethod: String {
   case get = "GET"
   case post = "POST"
+  case patch = "PATCH"
   case put = "PUT"
   case delete = "DELETE"
 }
@@ -31,6 +32,11 @@ class HTTPService {
 
   func post(url: String, query: [String: CustomStringConvertible]? = nil, data: Data? = nil, headers: [String: CustomStringConvertible]? = nil, completion: @escaping CompletionHandler) {
     let builder = requestBuilder(url: url, method: .post, query: query, data: data, headers: headers)
+    performRequest(builder, completion: completion)
+  }
+
+  func patch(url: String, query: [String: CustomStringConvertible]? = nil, data: Data? = nil, headers: [String: CustomStringConvertible]? = nil, completion: @escaping CompletionHandler) {
+    let builder = requestBuilder(url: url, method: .patch, query: query, data: data, headers: headers)
     performRequest(builder, completion: completion)
   }
 

@@ -13,7 +13,6 @@ extension HTTPService {
   
   func get(url: String, query: [String: CustomStringConvertible]? = nil, headers: [String: CustomStringConvertible]? = nil) -> Observable<(Data, URLResponse)> {
     return Observable.create({ (observer) -> Disposable in
-      // TODO: figure out if we need weak here
       self.get(url: url, query: query, headers: headers, completion: self.notifyObserver(observer))
       return Disposables.create()
     })
@@ -22,6 +21,13 @@ extension HTTPService {
   func post(url: String, query: [String: CustomStringConvertible]? = nil, data: Data? = nil, headers: [String: CustomStringConvertible]? = nil) -> Observable<(Data, URLResponse)> {
     return Observable.create({ (observer) -> Disposable in
       self.post(url: url, query: query, data: data, headers: headers, completion: self.notifyObserver(observer))
+      return Disposables.create()
+    })
+  }
+
+  func patch(url: String, query: [String: CustomStringConvertible]? = nil, data: Data? = nil, headers: [String: CustomStringConvertible]? = nil) -> Observable<(Data, URLResponse)> {
+    return Observable.create({ (observer) -> Disposable in
+      self.patch(url: url, query: query, data: data, headers: headers, completion: self.notifyObserver(observer))
       return Disposables.create()
     })
   }

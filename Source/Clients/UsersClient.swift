@@ -22,7 +22,7 @@ public class UsersClient: ApiClient {
     return patch(apiUrl: ApiUrl.currentUser, object: update)
   }
 
-  public func getAll(since userId: Int? = nil) -> Observable<[User]> {
+  public func listAll(since userId: Int? = nil) -> Observable<[User]> {
     return get(apiUrl: ApiUrl.users, parameters: userId.map({ [CustomApiParameter(name: "since", value: $0)] }))
   }
 }

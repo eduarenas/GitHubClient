@@ -24,6 +24,23 @@ public struct NewRepository: Encodable {
   public let allowSquashMerge: Bool?
   public let allowMergeCommit: Bool?
   public let allowRebaseMerge: Bool?
+
+  public init(name: String, description: String? = nil, homepage: String? = nil, isPrivate: Bool? = nil, hasIssues: Bool? = nil, hasProjects: Bool? = nil, hasWiki: Bool? = nil, teamId: Int? = nil, autoInit: Bool? = nil, gitignoreTemplate: String? = nil, licenseTemplate: String? = nil, allowSquashMerge: Bool? = nil, allowMergeCommit: Bool? = nil, allowRebaseMerge: Bool? = nil) {
+    self.name = name
+    self.description = description
+    self.homepage = homepage
+    self.isPrivate = isPrivate
+    self.hasIssues = hasIssues
+    self.hasProjects = hasProjects
+    self.hasWiki = hasWiki
+    self.teamId = teamId
+    self.autoInit = autoInit
+    self.gitignoreTemplate = gitignoreTemplate
+    self.licenseTemplate = licenseTemplate
+    self.allowSquashMerge = allowSquashMerge
+    self.allowMergeCommit = allowMergeCommit
+    self.allowRebaseMerge = allowRebaseMerge
+  }
 }
 
 extension NewRepository {

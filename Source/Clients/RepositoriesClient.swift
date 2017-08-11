@@ -16,15 +16,15 @@ public class RepositoriesClient: ApiClient {
     return get(apiUrl: .currentUserRepositories, parameters: [visibility, affiliation, type, sort, direction])
   }
 
-  public func getRepositories(forUser username: String, type: UserRepoType? = nil, sort: Sort? = nil, direction: Direction? = nil) -> Observable<[Repository]> {
+  public func get(forUser username: String, type: UserRepoType? = nil, sort: Sort? = nil, direction: Direction? = nil) -> Observable<[Repository]> {
     return get(apiUrl: .userRepositories(username: username), parameters: [type, sort, direction])
   }
 
-  public func getRepositories(forOrganization organization: String, type: OrgRepoType? = nil) -> Observable<[Repository]> {
+  public func get(forOrganization organization: String, type: OrgRepoType? = nil) -> Observable<[Repository]> {
     return get(apiUrl: .organizationRepositories(organization: organization), parameters: [type])
   }
 
-  public func getAllRepositories(since repositoryId: Int? = nil) -> Observable<[Repository]> {
+  public func getAll(since repositoryId: Int? = nil) -> Observable<[Repository]> {
     return get(apiUrl: .repositories, parameters: repositoryId.map({ [CustomApiParameter(name: "since", value: $0)] }))
   }
 

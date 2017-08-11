@@ -10,19 +10,19 @@ import RxSwift
 
 public class UsersClient: ApiClient {
 
-  public func getUser(username: String) -> Observable<User> {
+  public func get(username: String) -> Observable<User> {
     return get(apiUrl: ApiUrl.user(username: username))
   }
 
-  public func getCurrentUser() -> Observable<User> {
+  public func getCurrent() -> Observable<User> {
     return get(apiUrl: ApiUrl.currentUser)
   }
 
-  public func getAllUsers(since userId: Int? = nil) -> Observable<[User]> {
+  public func getAll(since userId: Int? = nil) -> Observable<[User]> {
     return get(apiUrl: ApiUrl.users, parameters: userId.map({ [CustomApiParameter(name: "since", value: $0)] }))
   }
 
-  public func updateCurrentUser(update: UserUpdate) -> Observable<User> {
+  public func updateCurrent(update: UserUpdate) -> Observable<User> {
     return patch(apiUrl: ApiUrl.currentUser, object: update)
   }
 }

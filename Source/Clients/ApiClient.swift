@@ -11,6 +11,7 @@ import RxSwift
 
 public class ApiClient {
 
+  let encoder = JSONEncoder()
   let decoder = JSONDecoder()
 
   private let httpService = HTTPService()
@@ -19,6 +20,7 @@ public class ApiClient {
   public init(authorizationToken: String) {
     headers = ["Authorization": authorizationToken,
                "Accept": "application/vnd.github.v3+json"]
+    encoder.dateEncodingStrategy = .iso8601
     decoder.dateDecodingStrategy = .iso8601
   }
 
@@ -26,5 +28,10 @@ public class ApiClient {
     let queryDict = parameters.flatMap { CustomApiParameter.queryDict(forParameters: $0) }
     return httpService.get(url: apiUrl.fullPath, query: queryDict, headers: headers)
       .map { return try self.decoder.decode(T.self, from: $0.0) }
+  }
+
+  func patch<U: Encodable, R: Decodable>(apiUrl: ApiUrl, object: U) -> Observable<R> {
+    return httpService.patch(url: apiUrl.fullPath, data: try! encoder.encode(object), headers: headers)
+      .map { return try self.decoder.decode(R.self, from: $0.0) }
   }
 }

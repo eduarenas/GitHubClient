@@ -36,6 +36,10 @@ public class RepositoriesClient: ApiClient {
     return post(apiUrl: .organizationRepositories(organization: organization), object: repository)
   }
 
+  public func get(owner: String, repo: String) -> Observable<Repository> {
+    return get(apiUrl: .repository(owner: owner, repo: repo))
+  }
+
 }
 
 public extension RepositoriesClient {

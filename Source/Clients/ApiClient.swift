@@ -30,6 +30,11 @@ public class ApiClient {
       .map { return try self.decoder.decode(T.self, from: $0.0) }
   }
 
+  func post<N: Encodable, R: Decodable>(apiUrl: ApiUrl, object: N) -> Observable<R> {
+    return httpService.post(url: apiUrl.fullPath, data: try! encoder.encode(object), headers: headers)
+      .map { return try self.decoder.decode(R.self, from: $0.0) }
+  }
+
   func patch<U: Encodable, R: Decodable>(apiUrl: ApiUrl, object: U) -> Observable<R> {
     return httpService.patch(url: apiUrl.fullPath, data: try! encoder.encode(object), headers: headers)
       .map { return try self.decoder.decode(R.self, from: $0.0) }

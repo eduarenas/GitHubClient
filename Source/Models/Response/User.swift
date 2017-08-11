@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct User: Codable {
+public struct User: Decodable {
   
   let avatarURL: String?
   let bio: String?

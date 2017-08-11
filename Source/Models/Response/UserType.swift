@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum UserType: String, Codable {
+public enum UserType: String, Decodable {
   case user = "User"
   case organization = "Organization"
   case bot = "Bot"

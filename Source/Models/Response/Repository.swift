@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Repository: Codable {
+public struct Repository: Decodable {
   public let allowMergeCommit: Bool?
   public let allowRebaseMerge: Bool?
   public let allowSquashMerge: Bool?

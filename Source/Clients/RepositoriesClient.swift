@@ -28,6 +28,14 @@ public class RepositoriesClient: ApiClient {
     return get(apiUrl: .repositories, parameters: repositoryId.map({ [CustomApiParameter(name: "since", value: $0)] }))
   }
 
+  public func createForCurrentUser(_ repository: NewRepository) -> Observable<Repository> {
+    return post(apiUrl: .currentUserRepositories, object: repository)
+  }
+
+  public func create(_ repository: NewRepository, inOrganization organization: String) -> Observable<Repository> {
+    return post(apiUrl: .organizationRepositories(organization: organization), object: repository)
+  }
+
 }
 
 public extension RepositoriesClient {

@@ -18,11 +18,11 @@ public class UsersClient: ApiClient {
     return get(apiUrl: ApiUrl.currentUser)
   }
 
-  public func getAll(since userId: Int? = nil) -> Observable<[User]> {
-    return get(apiUrl: ApiUrl.users, parameters: userId.map({ [CustomApiParameter(name: "since", value: $0)] }))
-  }
-
   public func updateCurrent(update: UserUpdate) -> Observable<User> {
     return patch(apiUrl: ApiUrl.currentUser, object: update)
+  }
+
+  public func getAll(since userId: Int? = nil) -> Observable<[User]> {
+    return get(apiUrl: ApiUrl.users, parameters: userId.map({ [CustomApiParameter(name: "since", value: $0)] }))
   }
 }

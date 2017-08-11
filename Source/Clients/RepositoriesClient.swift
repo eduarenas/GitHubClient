@@ -40,6 +40,9 @@ public class RepositoriesClient: ApiClient {
     return get(apiUrl: .repository(owner: owner, repo: repo))
   }
 
+  public func edit(owner: String, repo: String, update: RepositoryUpdate) -> Observable<Repository> {
+    return patch(apiUrl: .repository(owner: owner, repo: repo), object: update)
+  }
 }
 
 public extension RepositoriesClient {

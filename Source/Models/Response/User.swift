@@ -9,62 +9,62 @@
 import Foundation
 
 public struct User: Decodable {
-  
+
+  let login: String
+  let id: Int
   let avatarURL: String?
-  let bio: String?
-  let blog: String?
-  let collaborators: Int?
+  let url: String?
+  let htmlURL: String?
+  let type: UserType
+  let siteAdmin: Bool?
+  let name: String?
   let company: String?
-  let createdAt: Date?
-  let diskUsage: Int?
+  let blog: String?
+  let location: String?
   let email: String?
+  let hireable: Bool?
+  let bio: String?
+  let publicRepos: Int?
+  let publicGists: Int?
   let followers: Int?
   let following: Int?
-  let hireable: Bool?
-  let htmlURL: String?
-  let id: Int
-  let location: String?
-  let login: String
-  let name: String?
-  let type: UserType
-  let ownedPrivateRepos: Int?
-  // TODO: let plan: Plan?
-  let privateGists: Int?
-  let publicGists: Int?
-  let publicRepos: Int?
-  let siteAdmin: Bool?
-  let totalPrivateRepos: Int?
+  let createdAt: Date?
   let updatedAt: Date?
-  let url: String?
+  let totalPrivateRepos: Int?
+  let ownedPrivateRepos: Int?
+  let privateGists: Int?
+  let diskUsage: Int?
+  let collaborators: Int?
+  // TODO: let plan: Plan?
+
 }
 
 extension User {
   enum CodingKeys: String, CodingKey {
+    case login
+    case id
     case avatarURL = "avatar_url"
-    case bio
-    case blog
-    case collaborators
+    case url
+    case htmlURL = "html_url"
+    case type
+    case siteAdmin = "site_admin"
+    case name
     case company
-    case createdAt = "created_at"
-    case diskUsage = "disk_usage"
+    case blog
+    case location
     case email
+    case hireable
+    case bio
+    case publicRepos = "public_repos"
+    case publicGists = "public_gists"
     case followers
     case following
-    case hireable
-    case htmlURL = "html_url"
-    case id
-    case location
-    case login
-    case name
-    case type
-    case ownedPrivateRepos = "owned_private_repos"
-    // TODO: let plan: Plan?
-    case privateGists = "private_gists"
-    case publicGists = "public_gists"
-    case publicRepos = "public_repos"
-    case siteAdmin = "site_admin"
-    case totalPrivateRepos = "total_private_repos"
+    case createdAt = "created_at"
     case updatedAt = "updated_at"
-    case url
+    case totalPrivateRepos = "total_private_repos"
+    case ownedPrivateRepos = "owned_private_repos"
+    case privateGists = "private_gists"
+    case diskUsage = "disk_usage"
+    case collaborators
   }
 }

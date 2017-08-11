@@ -21,4 +21,8 @@ public class UsersClient: ApiClient {
   public func getAllUsers(since userId: Int? = nil) -> Observable<[User]> {
     return get(apiUrl: ApiUrl.users, parameters: userId.map({ [CustomApiParameter(name: "since", value: $0)] }))
   }
+
+  public func updateCurrentUser(update: UserUpdate) -> Observable<User> {
+    return patch(apiUrl: ApiUrl.currentUser, object: update)
+  }
 }

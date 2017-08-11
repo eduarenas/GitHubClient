@@ -10,31 +10,31 @@ import Foundation
 
 public struct User: Decodable {
 
-  let login: String
-  let id: Int
-  let avatarURL: String?
-  let url: String?
-  let htmlURL: String?
-  let type: UserType
-  let siteAdmin: Bool?
-  let name: String?
-  let company: String?
-  let blog: String?
-  let location: String?
-  let email: String?
-  let hireable: Bool?
-  let bio: String?
-  let publicRepos: Int?
-  let publicGists: Int?
-  let followers: Int?
-  let following: Int?
-  let createdAt: Date?
-  let updatedAt: Date?
-  let totalPrivateRepos: Int?
-  let ownedPrivateRepos: Int?
-  let privateGists: Int?
-  let diskUsage: Int?
-  let collaborators: Int?
+  public let login: String
+  public let id: Int
+  public let avatarURL: String?
+  public let url: String?
+  public let htmlURL: String?
+  public let type: UserType
+  public let siteAdmin: Bool?
+  public let name: String?
+  public let company: String?
+  public let blog: String?
+  public let location: String?
+  public let email: String?
+  public let hireable: Bool?
+  public let bio: String?
+  public let publicRepos: Int?
+  public let publicGists: Int?
+  public let followers: Int?
+  public let following: Int?
+  public let createdAt: Date?
+  public let updatedAt: Date?
+  public let totalPrivateRepos: Int?
+  public let ownedPrivateRepos: Int?
+  public let privateGists: Int?
+  public let diskUsage: Int?
+  public let collaborators: Int?
   // TODO: let plan: Plan?
 
 }

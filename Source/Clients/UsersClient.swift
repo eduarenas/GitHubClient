@@ -8,7 +8,7 @@
 
 import RxSwift
 
-public class UsersClient: ApiClient {
+public final class UsersClient: ApiClient {
 
   public func get(username: String) -> Observable<User> {
     return get(apiUrl: ApiUrl.user(username: username))

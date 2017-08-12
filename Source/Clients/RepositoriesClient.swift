@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-public class RepositoriesClient: ApiClient {
+public final class RepositoriesClient: ApiClient {
 
   public func listAllForCurrentUser(visibility: Visibility? = nil, affiliations: [Affiliation]? = nil, type: CurrentUserRepoType? = nil, sort: Sort? = nil, direction: Direction? = nil) -> Observable<[Repository]> {
     let affiliation = affiliations.map { CustomApiParameter.joinedParameters(fromParameters: $0) }

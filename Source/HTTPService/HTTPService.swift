@@ -21,7 +21,7 @@ enum HTTPMethod: String {
   case delete = "DELETE"
 }
 
-class HTTPService {
+final class HTTPService {
 
   typealias CompletionHandler = (Data?, URLResponse?, Error?) -> Void
 

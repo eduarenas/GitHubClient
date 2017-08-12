@@ -11,11 +11,11 @@ import RxSwift
 public final class UsersClient: ApiClient {
 
   public func get(username: String) -> Observable<User> {
-    return get(apiUrl: ApiUrl.user(username: username))
+    return getObject(apiUrl: ApiUrl.user(username: username))
   }
 
   public func getCurrent() -> Observable<User> {
-    return get(apiUrl: ApiUrl.currentUser)
+    return getObject(apiUrl: ApiUrl.currentUser)
   }
 
   public func updateCurrent(update: UserUpdate) -> Observable<User> {
@@ -23,6 +23,6 @@ public final class UsersClient: ApiClient {
   }
 
   public func listAll(since userId: Int? = nil) -> Observable<[User]> {
-    return get(apiUrl: ApiUrl.users, parameters: userId.map({ [CustomApiParameter(name: "since", value: $0)] }))
+    return getObject(apiUrl: ApiUrl.users, parameters: userId.map({ [CustomApiParameter(name: "since", value: $0)] }))
   }
 }

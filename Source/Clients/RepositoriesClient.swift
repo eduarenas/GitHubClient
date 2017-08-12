@@ -13,19 +13,19 @@ public final class RepositoriesClient: ApiClient {
 
   public func listAllForCurrentUser(visibility: Visibility? = nil, affiliations: [Affiliation]? = nil, type: CurrentUserRepoType? = nil, sort: Sort? = nil, direction: Direction? = nil) -> Observable<[Repository]> {
     let affiliation = affiliations.map { CustomApiParameter.joinedParameters(fromParameters: $0) }
-    return get(apiUrl: .currentUserRepositories, parameters: [visibility, affiliation, type, sort, direction])
+    return getObject(apiUrl: .currentUserRepositories, parameters: [visibility, affiliation, type, sort, direction])
   }
 
   public func list(forUser username: String, type: UserRepoType? = nil, sort: Sort? = nil, direction: Direction? = nil) -> Observable<[Repository]> {
-    return get(apiUrl: .userRepositories(username: username), parameters: [type, sort, direction])
+    return getObject(apiUrl: .userRepositories(username: username), parameters: [type, sort, direction])
   }
 
   public func list(forOrganization organization: String, type: OrgRepoType? = nil) -> Observable<[Repository]> {
-    return get(apiUrl: .organizationRepositories(organization: organization), parameters: [type])
+    return getObject(apiUrl: .organizationRepositories(organization: organization), parameters: [type])
   }
 
   public func listAll(since repositoryId: Int? = nil) -> Observable<[Repository]> {
-    return get(apiUrl: .repositories, parameters: repositoryId.map({ [CustomApiParameter(name: "since", value: $0)] }))
+    return getObject(apiUrl: .repositories, parameters: repositoryId.map({ [CustomApiParameter(name: "since", value: $0)] }))
   }
 
   public func createForCurrentUser(_ repository: NewRepository) -> Observable<Repository> {
@@ -37,7 +37,7 @@ public final class RepositoriesClient: ApiClient {
   }
 
   public func get(owner: String, repo: String) -> Observable<Repository> {
-    return get(apiUrl: .repository(owner: owner, repo: repo))
+    return getObject(apiUrl: .repository(owner: owner, repo: repo))
   }
 
   public func edit(owner: String, repo: String, update: RepositoryUpdate) -> Observable<Repository> {

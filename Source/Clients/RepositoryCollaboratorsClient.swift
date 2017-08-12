@@ -12,6 +12,6 @@ import RxSwift
 public final class RepositoryCollaboratorsClient: ApiClient {
 
   public func listAll(owner: String, repo: String, affiliation: Affiliation? = nil) -> Observable<[User]> {
-    return get(apiUrl: ApiUrl.repositoryCollaborators(owner: owner, repo: repo), parameters: [affiliation])
+    return getObject(apiUrl: ApiUrl.repositoryCollaborators(owner: owner, repo: repo), parameters: [affiliation])
   }
 

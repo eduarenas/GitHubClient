@@ -24,7 +24,7 @@ public class ApiClient {
     decoder.dateDecodingStrategy = .iso8601
   }
 
-  func get<T: Decodable>(apiUrl: ApiUrl, parameters: [ApiParameter?]? = nil) -> Observable<T> {
+  func getObject<T: Decodable>(apiUrl: ApiUrl, parameters: [ApiParameter?]? = nil) -> Observable<T> {
     let queryDict = parameters.flatMap { CustomApiParameter.queryDict(forParameters: $0) }
     return httpService.get(url: apiUrl.fullPath, query: queryDict, headers: headers)
       .map { return try self.decoder.decode(T.self, from: $0.0) }

@@ -43,6 +43,10 @@ public class RepositoriesClient: ApiClient {
   public func edit(owner: String, repo: String, update: RepositoryUpdate) -> Observable<Repository> {
     return patch(apiUrl: .repository(owner: owner, repo: repo), object: update)
   }
+
+  public func delete(owner: String, repo: String) -> Completable {
+    return delete(apiUrl: .repository(owner: owner, repo: repo))
+  }
 }
 
 public extension RepositoriesClient {

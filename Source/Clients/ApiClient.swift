@@ -39,4 +39,10 @@ public class ApiClient {
     return httpService.patch(url: apiUrl.fullPath, data: try! encoder.encode(object), headers: headers)
       .map { return try self.decoder.decode(R.self, from: $0.0) }
   }
+
+  func delete(apiUrl: ApiUrl) -> Completable {
+    return httpService.delete(url: apiUrl.fullPath, headers: headers)
+      .flatMap { _ in Observable<Never>.empty() }
+      .asCompletable()
+  }
 }

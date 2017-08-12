@@ -59,14 +59,6 @@ public extension RepositoriesClient {
     case `public`
   }
 
-  public enum Affiliation: String, ApiParameter {
-    public var name: String { return "affiliation" }
-
-    case collaborator
-    case organizationMember = "organization_member"
-    case owner
-  }
-
   public enum CurrentUserRepoType: String, ApiParameter {
     public var name: String { return "type" }
 

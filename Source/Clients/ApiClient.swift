@@ -57,6 +57,16 @@ public class ApiClient {
       .map { return try self.decoder.decode(R.self, from: $0.0) }
   }
 
+  func put<P: Encodable>(apiUrl: ApiUrl, parameters: P? = nil) -> Completable {
+    return Observable.just(parameters)
+      .map { try $0.flatMap({ try self.encoder.encode($0) }) }
+      .flatMap({ (data) -> Observable<(Data, URLResponse)> in
+        self.httpService.put(url: apiUrl.fullPath, data: data, headers: self.headers)
+      })
+      .flatMap { _ in Observable<Never>.empty() }
+      .asCompletable()
+  }
+
   func delete(apiUrl: ApiUrl) -> Completable {
     return httpService.delete(url: apiUrl.fullPath, headers: headers)
       .flatMap { _ in Observable<Never>.empty() }

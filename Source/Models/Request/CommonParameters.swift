@@ -16,3 +16,10 @@ public enum Affiliation: String, ApiParameter {
   case owner
 }
 
+public enum Permission: String, ApiParameter, Encodable {
+  public var name: String { return "permission" }
+
+  case pull
+  case push
+  case admin
+}

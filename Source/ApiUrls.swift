@@ -11,6 +11,13 @@ import Foundation
 enum ApiUrl {
   private static let baseURL = "https://api.github.com/"
 
+  // Issues
+  case currentUserAssignedIssues
+  case currentUserOwnedAndMemberReposIssues
+  case currentUserOrganizationIssues(org: String)
+  case repositoryIssue(owner: String, repo: String, number: Int)
+  case repositoryIssues(owner: String, repo: String)
+
   // Repositories
   case currentUserRepositories
   case userRepositories(username: String)
@@ -29,6 +36,11 @@ enum ApiUrl {
   
   var fullPath: String {
     switch self {
+    case .currentUserAssignedIssues: return ApiUrl.fullPath(from: ["issues"])
+    case .currentUserOwnedAndMemberReposIssues: return ApiUrl.fullPath(from: ["user", "issues"])
+    case .currentUserOrganizationIssues(let org): return ApiUrl.fullPath(from: ["orgs", org, "issues"])
+    case .repositoryIssue(let owner, let repo, let number): return ApiUrl.fullPath(from: ["repos", owner, repo, "issues", number])
+    case .repositoryIssues(let owner, let repo): return ApiUrl.fullPath(from: ["repos", owner, repo, "issues"])
     case .currentUserRepositories: return ApiUrl.fullPath(from: ["user", "repos"])
     case .userRepositories(let username): return ApiUrl.fullPath(from: ["users", username, "repos"])
     case .organizationRepositories(let organization): return ApiUrl.fullPath(from: ["orgs", organization, "repos"])

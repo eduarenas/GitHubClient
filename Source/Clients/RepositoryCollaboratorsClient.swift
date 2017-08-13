@@ -15,3 +15,7 @@ public final class RepositoryCollaboratorsClient: ApiClient {
     return getObject(apiUrl: ApiUrl.repositoryCollaborators(owner: owner, repo: repo), parameters: [affiliation])
   }
 
+  public func check(owner: String, repo: String, username: String) -> Observable<Bool> {
+    return getBoolean(apiUrl: ApiUrl.repositoryCollaborator(owner: owner, repo: repo, username: username))
+  }
+}

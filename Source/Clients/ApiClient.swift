@@ -25,9 +25,18 @@ public class ApiClient {
   }
 
   func getObject<T: Decodable>(apiUrl: ApiUrl, parameters: [ApiParameter?]? = nil) -> Observable<T> {
+    return get(apiUrl: apiUrl, parameters: parameters)
+      .map { return try self.decoder.decode(T.self, from: $0.0) }
+  }
+
+  func getBoolean(apiUrl: ApiUrl, parameters: [ApiParameter?]? = nil) -> Observable<Bool> {
+    return get(apiUrl: apiUrl, parameters: parameters)
+      .map { _ in true }
+  }
+
+  private func get(apiUrl: ApiUrl, parameters: [ApiParameter?]? = nil) -> Observable<(Data, URLResponse)> {
     let queryDict = parameters.flatMap { CustomApiParameter.queryDict(forParameters: $0) }
     return httpService.get(url: apiUrl.fullPath, query: queryDict, headers: headers)
-      .map { return try self.decoder.decode(T.self, from: $0.0) }
   }
 
   func post<N: Encodable, R: Decodable>(apiUrl: ApiUrl, object: N) -> Observable<R> {

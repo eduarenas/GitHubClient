@@ -40,12 +40,20 @@ public class ApiClient {
   }
 
   func post<N: Encodable, R: Decodable>(apiUrl: ApiUrl, object: N) -> Observable<R> {
-    return httpService.post(url: apiUrl.fullPath, data: try! encoder.encode(object), headers: headers)
+    return Observable.just(object)
+      .map { try self.encoder.encode($0) }
+      .flatMap({ (data) -> Observable<(Data, URLResponse)> in
+        self.httpService.post(url: apiUrl.fullPath, data: data, headers: self.headers)
+      })
       .map { return try self.decoder.decode(R.self, from: $0.0) }
   }
 
   func patch<U: Encodable, R: Decodable>(apiUrl: ApiUrl, object: U) -> Observable<R> {
-    return httpService.patch(url: apiUrl.fullPath, data: try! encoder.encode(object), headers: headers)
+    return Observable.just(object)
+      .map { try self.encoder.encode($0) }
+      .flatMap({ (data) -> Observable<(Data, URLResponse)> in
+        self.httpService.patch(url: apiUrl.fullPath, data: data, headers: self.headers)
+      })
       .map { return try self.decoder.decode(R.self, from: $0.0) }
   }
 

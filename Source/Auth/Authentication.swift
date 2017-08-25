@@ -21,10 +21,8 @@ public enum Authentication {
     }
   }
 
-  private func basicAuthenticationHeader(username: String, password: String) -> String {
-    guard let authorizationField = "\(username):\(password)".data(using: .utf8)?.base64EncodedString() else {
-      fatalError("Unable to construct authorization field")
-    }
+  private func basicAuthenticationHeader(username: String, password: String) -> String? {
+    guard let authorizationField = "\(username):\(password)".data(using: .utf8)?.base64EncodedString() else { return nil }
     return "Basic \(authorizationField)"
   }
 }

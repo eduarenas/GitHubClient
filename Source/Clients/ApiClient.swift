@@ -63,13 +63,11 @@ public class ApiClient {
       .flatMap({ (data) -> Observable<(Data, URLResponse)> in
         self.httpService.put(url: apiUrl.fullPath, data: data, headers: self.headers)
       })
-      .flatMap { _ in Observable<Never>.empty() }
       .asCompletable()
   }
 
   func delete(apiUrl: ApiUrl) -> Completable {
     return httpService.delete(url: apiUrl.fullPath, headers: headers)
-      .flatMap { _ in Observable<Never>.empty() }
       .asCompletable()
   }
 }

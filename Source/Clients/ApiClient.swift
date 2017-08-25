@@ -17,9 +17,10 @@ public class ApiClient {
   private let httpService = HTTPService()
   private let headers: [String: CustomStringConvertible]
 
-  public init(authorizationToken: String) {
-    headers = ["Authorization": authorizationToken,
-               "Accept": "application/vnd.github.v3+json"]
+  public init(authentication: Authentication = .anonymous) {
+    var clientHeaders = ["Accept": "application/vnd.github.v3+json"]
+    clientHeaders["Authorization"] = authentication.authorizationHeader
+    headers = clientHeaders
     encoder.dateEncodingStrategy = .iso8601
     decoder.dateDecodingStrategy = .iso8601
   }

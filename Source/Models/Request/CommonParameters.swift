@@ -14,6 +14,13 @@ public enum Affiliation: String, ApiParameter {
   case owner
 }
 
+public enum Direction: String, ApiParameter {
+  public var name: String { return "direction" }
+
+  case ascending = "asc"
+  case descending = "desc"
+}
+
 public enum Permission: String, ApiParameter, Encodable {
   public var name: String { return "permission" }
 

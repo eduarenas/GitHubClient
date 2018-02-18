@@ -102,11 +102,4 @@ public extension RepositoriesClient {
     case pushed
     case updated
   }
-
-  public enum Direction: String, ApiParameter {
-    public var name: String { return "direction" }
-
-    case ascending = "asc"
-    case descending = "desc"
-  }
 }

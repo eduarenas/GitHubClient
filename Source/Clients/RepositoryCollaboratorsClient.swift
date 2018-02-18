@@ -11,7 +11,7 @@ import RxSwift
 public final class RepositoryCollaboratorsClient: ApiClient {
 
   public func listAll(owner: String, repo: String, affiliation: Affiliation? = nil) -> Observable<[User]> {
-    return getObject(apiUrl: .repositoryCollaborators(owner: owner, repo: repo), parameters: [affiliation])
+    return getObject(apiUrl: .repositoryCollaborators(owner: owner, repo: repo), parameters: affiliation)
   }
 
   public func check(owner: String, repo: String, username: String) -> Observable<Bool> {

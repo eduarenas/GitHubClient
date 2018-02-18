@@ -24,12 +24,12 @@ public class ApiClient {
     decoder.dateDecodingStrategy = .iso8601
   }
 
-  func getObject<T: Decodable>(apiUrl: ApiUrl, parameters: [ApiParameter?]? = nil) -> Observable<T> {
+  func getObject<T: Decodable>(apiUrl: ApiUrl, parameters: ApiParameter?...) -> Observable<T> {
     return get(apiUrl: apiUrl, parameters: parameters)
       .map { return try self.decoder.decode(T.self, from: $0.0) }
   }
 
-  func getBoolean(apiUrl: ApiUrl, parameters: [ApiParameter?]? = nil) -> Observable<Bool> {
+  func getBoolean(apiUrl: ApiUrl, parameters: ApiParameter?...) -> Observable<Bool> {
     return get(apiUrl: apiUrl, parameters: parameters)
       .map { _ in true }
   }
@@ -60,8 +60,9 @@ public class ApiClient {
       .asCompletable()
   }
 
-  private func get(apiUrl: ApiUrl, parameters: [ApiParameter?]? = nil) -> Observable<(Data, URLResponse)> {
-    let queryDict = parameters.flatMap { CustomApiParameter.queryDict(forParameters: $0) }
+  private func get(apiUrl: ApiUrl, parameters: [ApiParameter?]) -> Observable<(Data, URLResponse)> {
+    let unwrappedParameters = parameters.flatMap({ $0 })
+    let queryDict = CustomApiParameter.queryDict(forParameters: unwrappedParameters)
     return httpService.get(url: apiUrl.fullPath, query: queryDict, headers: headers)
   }
 }

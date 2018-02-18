@@ -22,13 +22,8 @@ struct CustomApiParameter: ApiParameter {
   let name: String
   let value: CustomStringConvertible
 
-  static func queryDict(forParameters parameters: [ApiParameter?]) -> [String: CustomStringConvertible]? {
-    let unwrappedParameters = parameters.flatMap({ $0 })
-    guard unwrappedParameters.count > 0 else {
-      return nil
-    }
-
-    return Dictionary(unwrappedParameters.map({ ($0.name, $0.value) }), uniquingKeysWith: { $1 })
+  static func queryDict(forParameters parameters: [ApiParameter]) -> [String: CustomStringConvertible] {
+    return Dictionary(parameters.map({ ($0.name, $0.value) }), uniquingKeysWith: { $1 })
   }
 }
 

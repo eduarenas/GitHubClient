@@ -23,6 +23,6 @@ public final class UsersClient: ApiClient {
   }
 
   public func listAll(since userId: Int? = nil) -> Observable<[User]> {
-    return getObject(apiUrl: .users, parameters: userId.map({ [CustomApiParameter(name: "since", value: $0)] }))
+    return getObject(apiUrl: .users, parameters: userId.map({ CustomApiParameter(name: "since", value: $0) }))
   }
 }

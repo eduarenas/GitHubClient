@@ -15,23 +15,23 @@ public final class RepositoriesClient: ApiClient {
                                     type: CurrentUserRepoType? = nil,
                                     sort: Sort? = nil,
                                     direction: Direction? = nil) -> Observable<[Repository]> {
-    let affiliation = affiliations.map { $0.joinedParameters() }
-    return getObject(apiUrl: .currentUserRepositories, parameters: [visibility, affiliation, type, sort, direction])
+    let affiliation = affiliations?.joinedParameters()
+    return getObject(apiUrl: .currentUserRepositories, parameters: visibility, affiliation, type, sort, direction)
   }
 
   public func list(forUser username: String,
                    type: UserRepoType? = nil,
                    sort: Sort? = nil,
                    direction: Direction? = nil) -> Observable<[Repository]> {
-    return getObject(apiUrl: .userRepositories(username: username), parameters: [type, sort, direction])
+    return getObject(apiUrl: .userRepositories(username: username), parameters: type, sort, direction)
   }
 
   public func list(forOrganization organization: String, type: OrgRepoType? = nil) -> Observable<[Repository]> {
-    return getObject(apiUrl: .organizationRepositories(organization: organization), parameters: [type])
+    return getObject(apiUrl: .organizationRepositories(organization: organization), parameters: type)
   }
 
   public func listAll(since repositoryId: Int? = nil) -> Observable<[Repository]> {
-    return getObject(apiUrl: .repositories, parameters: repositoryId.map({ [CustomApiParameter(name: "since", value: $0)] }))
+    return getObject(apiUrl: .repositories, parameters: repositoryId.map({ CustomApiParameter(name: "since", value: $0) }))
   }
 
   public func createForCurrentUser(_ repository: NewRepository) -> Observable<Repository> {

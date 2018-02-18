@@ -10,12 +10,19 @@ import RxSwift
 
 public final class RepositoriesClient: ApiClient {
 
-  public func listAllForCurrentUser(visibility: Visibility? = nil, affiliations: [Affiliation]? = nil, type: CurrentUserRepoType? = nil, sort: Sort? = nil, direction: Direction? = nil) -> Observable<[Repository]> {
+  public func listAllForCurrentUser(visibility: Visibility? = nil,
+                                    affiliations: [Affiliation]? = nil,
+                                    type: CurrentUserRepoType? = nil,
+                                    sort: Sort? = nil,
+                                    direction: Direction? = nil) -> Observable<[Repository]> {
     let affiliation = affiliations.map { $0.joinedParameters() }
     return getObject(apiUrl: .currentUserRepositories, parameters: [visibility, affiliation, type, sort, direction])
   }
 
-  public func list(forUser username: String, type: UserRepoType? = nil, sort: Sort? = nil, direction: Direction? = nil) -> Observable<[Repository]> {
+  public func list(forUser username: String,
+                   type: UserRepoType? = nil,
+                   sort: Sort? = nil,
+                   direction: Direction? = nil) -> Observable<[Repository]> {
     return getObject(apiUrl: .userRepositories(username: username), parameters: [type, sort, direction])
   }
 

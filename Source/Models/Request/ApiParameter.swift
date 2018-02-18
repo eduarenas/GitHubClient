@@ -22,24 +22,21 @@ struct CustomApiParameter: ApiParameter {
   let name: String
   let value: CustomStringConvertible
 
-  // TODO: Move to `extension Array: ApiParameter where Element: ApiParameter?` when conditional conformances (SE-0143) are implemented
   static func queryDict(forParameters parameters: [ApiParameter?]) -> [String: CustomStringConvertible]? {
     let unwrappedParameters = parameters.flatMap({ $0 })
     guard unwrappedParameters.count > 0 else {
       return nil
     }
 
-    var queryDict = [String: CustomStringConvertible]()
-    unwrappedParameters.forEach { (parameter) in
-      queryDict[parameter.name] = parameter.value
-    }
-    return queryDict
+    return Dictionary(unwrappedParameters.map({ ($0.name, $0.value) }), uniquingKeysWith: { $1 })
   }
+}
 
-  // TODO: Move to `extension Array: ApiParameter where Element: ApiParameter` when conditional conformances (SE-0143) are implemented
-  static func joinedParameters(fromParameters parameters: [ApiParameter]) -> ApiParameter {
-    assert(Set(parameters.map({ $0.name })).count == 1, "All parameters in array need to have the same name")
-    precondition(!parameters.isEmpty, "Parameters must not be empty")
-    return CustomApiParameter(name: parameters[0].name, value: parameters.map({ $0.value.description }).joined(separator: ","))
+extension Array where Element: ApiParameter {
+
+  func joinedParameters() -> ApiParameter {
+    assert(Set(self.map({ $0.name })).count == 1, "All parameters in array need to have the same name")
+    precondition(!self.isEmpty, "Parameters must not be empty")
+    return CustomApiParameter(name: self[0].name, value: self.map({ $0.value.description }).joined(separator: ","))
   }
 }

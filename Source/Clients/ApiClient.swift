@@ -34,11 +34,6 @@ public class ApiClient {
       .map { _ in true }
   }
 
-  private func get(apiUrl: ApiUrl, parameters: [ApiParameter?]? = nil) -> Observable<(Data, URLResponse)> {
-    let queryDict = parameters.flatMap { CustomApiParameter.queryDict(forParameters: $0) }
-    return httpService.get(url: apiUrl.fullPath, query: queryDict, headers: headers)
-  }
-
   func post<N: Encodable, R: Decodable>(apiUrl: ApiUrl, object: N) -> Observable<R> {
     return Observable.just(object)
       .map { try self.encoder.encode($0) }
@@ -63,5 +58,10 @@ public class ApiClient {
   func delete(apiUrl: ApiUrl) -> Completable {
     return httpService.delete(url: apiUrl.fullPath, headers: headers)
       .asCompletable()
+  }
+
+  private func get(apiUrl: ApiUrl, parameters: [ApiParameter?]? = nil) -> Observable<(Data, URLResponse)> {
+    let queryDict = parameters.flatMap { CustomApiParameter.queryDict(forParameters: $0) }
+    return httpService.get(url: apiUrl.fullPath, query: queryDict, headers: headers)
   }
 }

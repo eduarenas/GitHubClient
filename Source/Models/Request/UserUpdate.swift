@@ -16,7 +16,13 @@ public struct UserUpdate: Encodable {
   public let hireable: Bool?
   public let bio: String?
 
-  public init(name: String? = nil, email: String? = nil, blog: String? = nil, company: String? = nil, location: String? = nil, hireable: Bool? = nil, bio: String? = nil) {
+  public init(name: String? = nil,
+              email: String? = nil,
+              blog: String? = nil,
+              company: String? = nil,
+              location: String? = nil,
+              hireable: Bool? = nil,
+              bio: String? = nil) {
     self.name = name
     self.email = email
     self.blog = blog

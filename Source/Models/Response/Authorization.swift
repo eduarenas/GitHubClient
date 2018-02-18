@@ -6,7 +6,7 @@
 //  Copyright © 2018 GameChanger. All rights reserved.
 //
 
-public struct Authorization: Codable {
+public struct Authorization: Decodable {
   public let id: Int
   public let url: String
   public let scopes: [String]

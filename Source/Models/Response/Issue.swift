@@ -19,7 +19,7 @@ public struct Issue: Decodable {
   let body: String
   let closedBy: User?
   let user: User?
-  // let labels: [Label]
+  let labels: [IssueLabel]
   let assignee: User?
   let assignees:  [User]?
   //let milestone: Milestone?

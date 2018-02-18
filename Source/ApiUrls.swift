@@ -37,26 +37,26 @@ enum ApiUrl {
   
   var fullPath: String {
     switch self {
-    case .authorizations: return ApiUrl.fullPath(from: ["authorizations"])
-    case .currentUserAssignedIssues: return ApiUrl.fullPath(from: ["issues"])
-    case .currentUserOwnedAndMemberReposIssues: return ApiUrl.fullPath(from: ["user", "issues"])
-    case .currentUserOrganizationIssues(let org): return ApiUrl.fullPath(from: ["orgs", org, "issues"])
-    case .repositoryIssue(let owner, let repo, let number): return ApiUrl.fullPath(from: ["repos", owner, repo, "issues", number])
-    case .repositoryIssues(let owner, let repo): return ApiUrl.fullPath(from: ["repos", owner, repo, "issues"])
-    case .currentUserRepositories: return ApiUrl.fullPath(from: ["user", "repos"])
-    case .userRepositories(let username): return ApiUrl.fullPath(from: ["users", username, "repos"])
-    case .organizationRepositories(let organization): return ApiUrl.fullPath(from: ["orgs", organization, "repos"])
-    case .repositories: return ApiUrl.fullPath(from: ["repositories"])
-    case .repository(let owner, let repo): return ApiUrl.fullPath(from: ["repos", owner, repo])
-    case .repositoryCollaborators(let owner, let repo): return ApiUrl.fullPath(from: ["repos", owner, repo, "collaborators"])
-    case .repositoryCollaborator(let owner, let repo, let username): return ApiUrl.fullPath(from: ["repos", owner, repo, "collaborators", username])
-    case .currentUser: return ApiUrl.fullPath(from: ["user"])
-    case .user(let username): return ApiUrl.fullPath(from: ["users", username])
-    case .users: return ApiUrl.fullPath(from: ["users"])
+    case .authorizations: return ApiUrl.fullPath(from: "authorizations")
+    case .currentUserAssignedIssues: return ApiUrl.fullPath(from: "issues")
+    case .currentUserOwnedAndMemberReposIssues: return ApiUrl.fullPath(from: "user", "issues")
+    case .currentUserOrganizationIssues(let org): return ApiUrl.fullPath(from: "orgs", org, "issues")
+    case .repositoryIssue(let owner, let repo, let number): return ApiUrl.fullPath(from: "repos", owner, repo, "issues", number)
+    case .repositoryIssues(let owner, let repo): return ApiUrl.fullPath(from: "repos", owner, repo, "issues")
+    case .currentUserRepositories: return ApiUrl.fullPath(from: "user", "repos")
+    case .userRepositories(let username): return ApiUrl.fullPath(from: "users", username, "repos")
+    case .organizationRepositories(let organization): return ApiUrl.fullPath(from: "orgs", organization, "repos")
+    case .repositories: return ApiUrl.fullPath(from: "repositories")
+    case .repository(let owner, let repo): return ApiUrl.fullPath(from: "repos", owner, repo)
+    case .repositoryCollaborators(let owner, let repo): return ApiUrl.fullPath(from: "repos", owner, repo, "collaborators")
+    case .repositoryCollaborator(let owner, let repo, let username): return ApiUrl.fullPath(from: "repos", owner, repo, "collaborators", username)
+    case .currentUser: return ApiUrl.fullPath(from: "user")
+    case .user(let username): return ApiUrl.fullPath(from: "users", username)
+    case .users: return ApiUrl.fullPath(from: "users")
     }
   }
 
-  static func fullPath(from components: [CustomStringConvertible]) -> String {
+  static func fullPath(from components: CustomStringConvertible...) -> String {
     let endpointPath = components.map({ $0.description }).joined(separator: "/")
     return baseUrl.appending(endpointPath)
   }

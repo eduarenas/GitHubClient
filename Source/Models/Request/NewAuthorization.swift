@@ -6,7 +6,7 @@
 //  Copyright © 2018 GameChanger. All rights reserved.
 //
 
-public struct NewAuthorization: Codable {
+public struct NewAuthorization: Encodable {
   
   public let note: String?
   public let noteUrl: String?

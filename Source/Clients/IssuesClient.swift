@@ -44,6 +44,14 @@ public final class IssuesClient: ApiClient {
   func get(owner: String, repo: String, number: Int) -> Observable<Issue> {
     return getObject(apiUrl: .repositoryIssue(owner: owner, repo: repo, number: number))
   }
+
+  func create(_ issue: NewIssue, owner: String, repo: String) -> Observable<Issue> {
+    return post(apiUrl: .repositoryIssues(owner: owner, repo: repo), object: issue)
+  }
+
+  func edit(owner: String, repo: String, number: Int, update: IssueUpdate) -> Observable<Issue> {
+    return patch(apiUrl: .repositoryIssue(owner: owner, repo: repo, number: number), object: update)
+  }
 }
 
 public extension IssuesClient {

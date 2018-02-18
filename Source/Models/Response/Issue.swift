@@ -14,7 +14,7 @@ public struct Issue: Decodable {
   let commentsUrl: String
   let eventsUrl: String
   let number: Int
-  let state: String // TODO: user enum
+  let state: IssueState
   let title: String
   let body: String
   let closedBy: User?

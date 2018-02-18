@@ -10,9 +10,9 @@ public struct User: Decodable {
 
   public let login: String
   public let id: Int
-  public let avatarURL: String?
+  public let avatarUrl: String?
   public let url: String?
-  public let htmlURL: String?
+  public let htmlUrl: String?
   public let type: UserType
   public let siteAdmin: Bool?
   public let name: String?
@@ -41,9 +41,9 @@ extension User {
   enum CodingKeys: String, CodingKey {
     case login
     case id
-    case avatarURL = "avatar_url"
+    case avatarUrl = "avatar_url"
     case url
-    case htmlURL = "html_url"
+    case htmlUrl = "html_url"
     case type
     case siteAdmin = "site_admin"
     case name

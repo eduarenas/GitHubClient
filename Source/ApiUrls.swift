@@ -7,7 +7,7 @@
 //
 
 enum ApiUrl {
-  private static let baseURL = "https://api.github.com/"
+  private static let baseUrl = "https://api.github.com/"
 
   // Authorizations
   case authorizations
@@ -58,6 +58,6 @@ enum ApiUrl {
 
   static func fullPath(from components: [CustomStringConvertible]) -> String {
     let endpointPath = components.map({ $0.description }).joined(separator: "/")
-    return baseURL.appending(endpointPath)
+    return baseUrl.appending(endpointPath)
   }
 }

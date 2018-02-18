@@ -7,7 +7,7 @@
 //
 
 enum HTTPServiceError: Error {
-  case invalidURL(url: String)
+  case invalidUrl(url: String)
   case invalidResponse
 }
 
@@ -60,7 +60,7 @@ final class HTTPService {
   private func requestBuilder(url: String, method: HTTPMethod, query: [String: CustomStringConvertible]? = nil, data: Data? = nil, headers: [String: CustomStringConvertible]?) -> () throws -> URLRequest {
 
     let requestBuilder: () throws -> URLRequest = {
-      let finalUrl = try self.buildURL(urlString: url, query: query)
+      let finalUrl = try self.buildUrl(urlString: url, query: query)
       var request = URLRequest(url: finalUrl)
       request.httpMethod = method.rawValue
       headers?.forEach { request.setValue($0.value.description, forHTTPHeaderField: $0.key)  }
@@ -70,8 +70,8 @@ final class HTTPService {
     return requestBuilder
   }
 
-  private func buildURL(urlString: String, query: [String: CustomStringConvertible]?) throws -> URL {
-    guard let url = URL(string: urlString) else { throw HTTPServiceError.invalidURL(url: urlString) }
+  private func buildUrl(urlString: String, query: [String: CustomStringConvertible]?) throws -> URL {
+    guard let url = URL(string: urlString) else { throw HTTPServiceError.invalidUrl(url: urlString) }
     guard let query = query else { return url }
 
     var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)

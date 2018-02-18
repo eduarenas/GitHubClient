@@ -11,6 +11,9 @@ import Foundation
 enum ApiUrl {
   private static let baseURL = "https://api.github.com/"
 
+  // Authorizations
+  case authorizations
+
   // Issues
   case currentUserAssignedIssues
   case currentUserOwnedAndMemberReposIssues
@@ -36,6 +39,7 @@ enum ApiUrl {
   
   var fullPath: String {
     switch self {
+    case .authorizations: return ApiUrl.fullPath(from: ["authorizations"])
     case .currentUserAssignedIssues: return ApiUrl.fullPath(from: ["issues"])
     case .currentUserOwnedAndMemberReposIssues: return ApiUrl.fullPath(from: ["user", "issues"])
     case .currentUserOrganizationIssues(let org): return ApiUrl.fullPath(from: ["orgs", org, "issues"])

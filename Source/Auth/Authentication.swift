@@ -6,9 +6,8 @@
 //  Copyright © 2017 GameChanger. All rights reserved.
 //
 
-import Foundation
-
 public enum Authentication {
+  
   case anonymous
   case oauth(token: String)
   case basic(username: String, password: String)

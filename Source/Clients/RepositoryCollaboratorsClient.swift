@@ -23,6 +23,10 @@ public final class RepositoryCollaboratorsClient: ApiClient {
                parameters: permission.flatMap({ PermisionParameter(permission: $0) }))
   }
 
+  public func delete(owner: String, repo: String, username: String) -> Completable {
+    return delete(apiUrl: .repositoryCollaborator(owner: owner, repo: repo, username: username))
+  }
+
   struct PermisionParameter: Encodable {
     let permission: Permission
   }

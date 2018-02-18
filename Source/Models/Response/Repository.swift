@@ -6,8 +6,6 @@
 //  Copyright © 2017 GameChanger. All rights reserved.
 //
 
-import Foundation
-
 public struct Repository: Decodable {
   public let id: Int
   public let owner: User

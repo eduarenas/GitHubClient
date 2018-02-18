@@ -6,8 +6,6 @@
 //  Copyright © 2017 GameChanger. All rights reserved.
 //
 
-import Foundation
-
 public struct RepositoryUpdate: Encodable {
 
   public let name: String

@@ -6,8 +6,6 @@
 //  Copyright © 2017 GameChanger. All rights reserved.
 //
 
-import Foundation
-
 public enum Affiliation: String, ApiParameter {
   public var name: String { return "affiliation" }
 

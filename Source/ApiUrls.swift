@@ -6,8 +6,6 @@
 //  Copyright © 2017 GameChanger. All rights reserved.
 //
 
-import Foundation
-
 enum ApiUrl {
   private static let baseURL = "https://api.github.com/"
 

@@ -18,7 +18,7 @@ public final class UsersClient: ApiClient {
     return getObject(apiUrl: .currentUser)
   }
 
-  public func updateCurrent(update: UserUpdate) -> Observable<User> {
+  public func editCurrent(update: UserUpdate) -> Observable<User> {
     return patch(apiUrl: .currentUser, object: update)
   }
 

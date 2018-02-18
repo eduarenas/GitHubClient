@@ -11,6 +11,10 @@ enum ApiUrl {
 
   // Authorizations
   case authorizations
+  case authorization(id: Int)
+  case clientAuthorization(clientId: String)
+  case clientAndFingerprintAuthorization(clientId: String, fingerprint: String)
+  case clientAuthorizationToken(clientId: String, token: String)
 
   // Issues
   case currentUserAssignedIssues
@@ -38,6 +42,10 @@ enum ApiUrl {
   var fullPath: String {
     switch self {
     case .authorizations: return ApiUrl.fullPath(from: "authorizations")
+    case .authorization(let id): return ApiUrl.fullPath(from: "authorization", id)
+    case .clientAuthorization(let clientId): return ApiUrl.fullPath(from: "authorizations", "clients", clientId)
+    case .clientAndFingerprintAuthorization(let clientId, let fingerprint): return ApiUrl.fullPath(from: "authorizations", "clients", clientId, fingerprint)
+    case .clientAuthorizationToken(let clientId, let token): return ApiUrl.fullPath(from: "applications", clientId, "tokens", token)
     case .currentUserAssignedIssues: return ApiUrl.fullPath(from: "issues")
     case .currentUserOwnedAndMemberReposIssues: return ApiUrl.fullPath(from: "user", "issues")
     case .currentUserOrganizationIssues(let org): return ApiUrl.fullPath(from: "orgs", org, "issues")

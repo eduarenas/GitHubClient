@@ -34,6 +34,15 @@ public class ApiClient {
       .map { _ in true }
   }
 
+  func getPaginated<T: Decodable>(apiUrl: ApiUrl, limit: Int = 30, parameters: ApiParameter?...) -> Observable<[T]> {
+    let paginatedClient = PaginatedApiClient<T>(apiUrl: apiUrl,
+                                                parameters: parameters,
+                                                limit: limit,
+                                                headers: headers,
+                                                decoder: decoder)
+    return paginatedClient.performRequest()
+  }
+
   func post<N: Encodable, R: Decodable>(apiUrl: ApiUrl, object: N) -> Observable<R> {
     return Observable.just(object)
       .map { try self.encoder.encode($0) }

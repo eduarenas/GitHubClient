@@ -72,7 +72,7 @@ public class ApiClient {
       .asCompletable()
   }
 
-  private func get(apiUrl: ApiUrl, parameters: [ApiParameter?]) -> Observable<(Data, URLResponse)> {
+  private func get(apiUrl: ApiUrl, parameters: [ApiParameter?]) -> Observable<(Data, HTTPURLResponse)> {
     let unwrappedParameters = parameters.flatMap({ $0 })
     let queryDict = CustomApiParameter.queryDict(forParameters: unwrappedParameters)
     return httpService.get(url: apiUrl.fullPath, query: queryDict, headers: headers)

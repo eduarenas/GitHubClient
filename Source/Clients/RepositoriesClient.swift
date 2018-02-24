@@ -31,7 +31,7 @@ public final class RepositoriesClient: ApiClient {
   }
 
   public func listAll(since repositoryId: Int? = nil, limit: Int = 30) -> Observable<[Repository]> {
-    return getPaginated(apiUrl: .repositories, limit: limit, parameters: repositoryId.map({ CustomApiParameter(name: "since", value: $0) }))
+    return getObjects(apiUrl: .repositories, limit: limit, parameters: repositoryId.map({ CustomApiParameter(name: "since", value: $0) }))
   }
 
   public func createForCurrentUser(_ repository: NewRepository) -> Observable<Repository> {

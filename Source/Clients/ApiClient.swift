@@ -34,13 +34,24 @@ public class ApiClient {
       .map { _ in true }
   }
 
-  func getPaginated<T: Decodable>(apiUrl: ApiUrl, limit: Int = 30, parameters: ApiParameter?...) -> Observable<[T]> {
-    let paginatedClient = PaginatedApiClient<T>(apiUrl: apiUrl,
-                                                parameters: parameters,
-                                                limit: limit,
-                                                headers: headers,
-                                                decoder: decoder)
-    return paginatedClient.performRequest()
+  func getObjects<T: Decodable>(apiUrl: ApiUrl, limit: Int = 30, parameters: ApiParameter?...) -> Observable<[T]> {
+    var unwrappedParameters = parameters.flatMap({ $0 })
+    let perPage = min(limit, 100)
+    unwrappedParameters.append(CustomApiParameter(name: "per_page", value: perPage))
+    let queryDict = CustomApiParameter.queryDict(forParameters: unwrappedParameters)
+
+    return getPaginated(url: apiUrl.fullPath, queryDict: queryDict)
+      .flatMap({ (firstPageResult: PageResult<T>) -> Observable<[T]> in
+        return self.fetchUntilLimit(currentPageResult: firstPageResult, limit: limit, results: [])
+      })
+  }
+
+  func getPaginatedObjects<T: Decodable>(apiUrl: ApiUrl,
+                                         parameters: ApiParameter?...) -> Observable<PageResult<T>> {
+    let unwrappedParameters = parameters.flatMap({ $0 })
+    let queryDict = CustomApiParameter.queryDict(forParameters: unwrappedParameters)
+    return getPaginated(url: apiUrl.fullPath,
+                        queryDict: queryDict)
   }
 
   func post<N: Encodable, R: Decodable>(apiUrl: ApiUrl, object: N) -> Observable<R> {
@@ -85,5 +96,31 @@ public class ApiClient {
     let unwrappedParameters = parameters.flatMap({ $0 })
     let queryDict = CustomApiParameter.queryDict(forParameters: unwrappedParameters)
     return httpService.get(url: apiUrl.fullPath, query: queryDict, headers: headers)
+  }
+
+  private func getPaginated<T: Decodable>(url: String,
+                                          queryDict: [String: CustomStringConvertible]?) -> Observable<PageResult<T>> {
+    return httpService.get(url: url, query: queryDict, headers: headers)
+      .map({ (response) -> PageResult<T> in
+        let pageItems = try self.decoder.decode([T].self, from: response.0)
+
+        let linkString = response.1.allHeaderFields["Link"] as? String
+        let nextUrl = linkString.flatMap { PageLinkParser.parse(linkString: $0).next }
+        
+        return PageResult(items: pageItems,
+                          nextPage: nextUrl.map({ self.getPaginated(url: $0, queryDict: nil) }))
+      })
+  }
+
+  private func fetchUntilLimit<T>(currentPageResult: PageResult<T>,
+                                  limit: Int,
+                                  results: [T]) -> Observable<[T]> {
+    if let nextPage = currentPageResult.nextPage, results.count < limit {
+      return nextPage.flatMap({ (nextPageResult) -> Observable<[T]> in
+        return self.fetchUntilLimit(currentPageResult: nextPageResult, limit: limit, results: results + currentPageResult.items)
+      })
+    } else {
+      return Observable.just(Array(results.prefix(limit)))
+    }
   }
 }

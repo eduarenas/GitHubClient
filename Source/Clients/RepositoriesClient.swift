@@ -34,6 +34,10 @@ public final class RepositoriesClient: ApiClient {
     return getObjects(apiUrl: .repositories, limit: limit, parameters: repositoryId.map({ CustomApiParameter(name: "since", value: $0) }))
   }
 
+  public func listAll(since repositoryId: Int? = nil) -> Observable<PageResult<Repository>> {
+    return getPaginatedObjects(apiUrl: .repositories, parameters: repositoryId.map({ CustomApiParameter(name: "since", value: $0) }))
+  }
+
   public func createForCurrentUser(_ repository: NewRepository) -> Observable<Repository> {
     return post(apiUrl: .currentUserRepositories, object: repository)
   }

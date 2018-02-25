@@ -15,7 +15,7 @@ public final class RepositoriesClient: ApiClient {
                                     type: CurrentUserRepoType? = nil,
                                     sort: Sort? = nil,
                                     direction: Direction? = nil,
-                                    limit: Limit = .all) -> Observable<[Repository]> {
+                                    limit: Int? = nil) -> Observable<[Repository]> {
     let affiliation = affiliations?.joinedParameters()
     return getObjects(apiUrl: .currentUserRepositories, limit: limit, parameters: visibility, affiliation, type, sort, direction)
   }
@@ -33,7 +33,7 @@ public final class RepositoriesClient: ApiClient {
                           type: UserRepoType? = nil,
                           sort: Sort? = nil,
                           direction: Direction? = nil,
-                          limit: Limit = .all) -> Observable<[Repository]> {
+                          limit: Int? = nil) -> Observable<[Repository]> {
     return getObjects(apiUrl: .userRepositories(username: username), limit: limit, parameters: type, sort, direction)
   }
 
@@ -44,16 +44,16 @@ public final class RepositoriesClient: ApiClient {
     return getPaginatedObjects(apiUrl: .userRepositories(username: username), parameters: type, sort, direction)
   }
 
-  public func listForOrganization(_ organization: String, type: OrgRepoType? = nil, limit: Limit = .all) -> Observable<[Repository]> {
+  public func listForOrganization(_ organization: String, type: OrgRepoType? = nil, limit: Int? = nil) -> Observable<[Repository]> {
     return getObjects(apiUrl: .organizationRepositories(organization: organization), limit: limit, parameters: type)
   }
-  
-  public func listForOrganizationPaginated(_ organization: String, type: OrgRepoType? = nil, limit: Limit = .all) -> Observable<PageResult<Repository>> {
+
+  public func listForOrganizationPaginated(_ organization: String, type: OrgRepoType? = nil) -> Observable<PageResult<Repository>> {
     return getPaginatedObjects(apiUrl: .organizationRepositories(organization: organization), parameters: type)
   }
 
   public func listAll(since repositoryId: Int? = nil, limit: Int = 100) -> Observable<[Repository]> {
-    return getObjects(apiUrl: .repositories, limit: .limit(limit), parameters: repositoryId.map({ CustomApiParameter(name: "since", value: $0) }))
+    return getObjects(apiUrl: .repositories, limit: limit, parameters: repositoryId.map({ CustomApiParameter(name: "since", value: $0) }))
   }
 
   public func listAllPaginated(since repositoryId: Int? = nil) -> Observable<PageResult<Repository>> {

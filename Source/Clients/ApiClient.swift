@@ -34,9 +34,9 @@ public class ApiClient {
       .map { _ in true }
   }
 
-  func getObjects<T: Decodable>(apiUrl: ApiUrl, limit: Limit, parameters: ApiParameter?...) -> Observable<[T]> {
+  func getObjects<T: Decodable>(apiUrl: ApiUrl, limit: Int?, parameters: ApiParameter?...) -> Observable<[T]> {
     var unwrappedParameters = parameters.flatMap({ $0 })
-    unwrappedParameters.append(CustomApiParameter(name: "per_page", value: limit.perPage))
+    unwrappedParameters.append(CustomApiParameter(name: "per_page", value: limit ?? 100))
     let queryDict = CustomApiParameter.queryDict(forParameters: unwrappedParameters)
 
     return getPaginated(url: apiUrl.fullPath, queryDict: queryDict)
@@ -112,31 +112,20 @@ public class ApiClient {
   }
 
   private func fetchUntilLimit<T>(currentPageResult: PageResult<T>,
-                                  limit: Limit,
+                                  limit: Int?,
                                   accumulatedResults: [T]) -> Observable<[T]> {
 
     let results = accumulatedResults + currentPageResult.items
 
-    if let nextPage = currentPageResult.nextPage, !reachedLimit(partialResults: accumulatedResults, limit: limit) {
+    let reachedLimit = limit.map { $0 >= results.count } ?? false
+
+    if let nextPage = currentPageResult.nextPage, !reachedLimit {
       return nextPage.flatMap({ (nextPageResult) -> Observable<[T]> in
         return self.fetchUntilLimit(currentPageResult: nextPageResult, limit: limit, accumulatedResults: results)
       })
     } else {
-      return Observable.just(truncatedResults(results, limit: limit))
-    }
-  }
-
-  private func reachedLimit<T>(partialResults: [T], limit: Limit) -> Bool {
-    switch limit {
-    case .limit(let count): return partialResults.count >= count
-    case .all: return false
-    }
-  }
-
-  private func truncatedResults<T>(_ results: [T], limit: Limit) -> [T] {
-    switch limit {
-    case .limit(let count): return Array(results.prefix(count))
-    case .all: return results
+      let truncatedResults = limit.map { Array(results.prefix($0)) } ?? results
+      return Observable.just(truncatedResults)
     }
   }
 }

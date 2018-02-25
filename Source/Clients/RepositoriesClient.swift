@@ -14,9 +14,10 @@ public final class RepositoriesClient: ApiClient {
                                     affiliations: [Affiliation]? = nil,
                                     type: CurrentUserRepoType? = nil,
                                     sort: Sort? = nil,
-                                    direction: Direction? = nil) -> Observable<[Repository]> {
+                                    direction: Direction? = nil,
+                                    limit: Limit = .limit(30)) -> Observable<[Repository]> {
     let affiliation = affiliations?.joinedParameters()
-    return getObject(apiUrl: .currentUserRepositories, parameters: visibility, affiliation, type, sort, direction)
+    return getObjects(apiUrl: .currentUserRepositories, limit: limit, parameters: visibility, affiliation, type, sort, direction)
   }
 
   public func list(forUser username: String,
@@ -31,7 +32,7 @@ public final class RepositoriesClient: ApiClient {
   }
 
   public func listAll(since repositoryId: Int? = nil, limit: Int = 30) -> Observable<[Repository]> {
-    return getObjects(apiUrl: .repositories, limit: limit, parameters: repositoryId.map({ CustomApiParameter(name: "since", value: $0) }))
+    return getObjects(apiUrl: .repositories, limit: .limit(limit), parameters: repositoryId.map({ CustomApiParameter(name: "since", value: $0) }))
   }
 
   public func listAll(since repositoryId: Int? = nil) -> Observable<PageResult<Repository>> {

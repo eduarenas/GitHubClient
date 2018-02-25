@@ -34,15 +34,14 @@ public class ApiClient {
       .map { _ in true }
   }
 
-  func getObjects<T: Decodable>(apiUrl: ApiUrl, limit: Int = 30, parameters: ApiParameter?...) -> Observable<[T]> {
+  func getObjects<T: Decodable>(apiUrl: ApiUrl, limit: Limit, parameters: ApiParameter?...) -> Observable<[T]> {
     var unwrappedParameters = parameters.flatMap({ $0 })
-    let perPage = min(limit, 100)
-    unwrappedParameters.append(CustomApiParameter(name: "per_page", value: perPage))
+    unwrappedParameters.append(CustomApiParameter(name: "per_page", value: limit.perPage))
     let queryDict = CustomApiParameter.queryDict(forParameters: unwrappedParameters)
 
     return getPaginated(url: apiUrl.fullPath, queryDict: queryDict)
       .flatMap({ (firstPageResult: PageResult<T>) -> Observable<[T]> in
-        return self.fetchUntilLimit(currentPageResult: firstPageResult, limit: limit, results: [])
+        return self.fetchUntilLimit(currentPageResult: firstPageResult, limit: limit, accumulatedResults: [])
       })
   }
 
@@ -113,14 +112,31 @@ public class ApiClient {
   }
 
   private func fetchUntilLimit<T>(currentPageResult: PageResult<T>,
-                                  limit: Int,
-                                  results: [T]) -> Observable<[T]> {
-    if let nextPage = currentPageResult.nextPage, results.count < limit {
+                                  limit: Limit,
+                                  accumulatedResults: [T]) -> Observable<[T]> {
+
+    let results = accumulatedResults + currentPageResult.items
+
+    if let nextPage = currentPageResult.nextPage, !reachedLimit(partialResults: accumulatedResults, limit: limit) {
       return nextPage.flatMap({ (nextPageResult) -> Observable<[T]> in
-        return self.fetchUntilLimit(currentPageResult: nextPageResult, limit: limit, results: results + currentPageResult.items)
+        return self.fetchUntilLimit(currentPageResult: nextPageResult, limit: limit, accumulatedResults: results)
       })
     } else {
-      return Observable.just(Array(results.prefix(limit)))
+      return Observable.just(truncatedResults(results, limit: limit))
+    }
+  }
+
+  private func reachedLimit<T>(partialResults: [T], limit: Limit) -> Bool {
+    switch limit {
+    case .limit(let count): return partialResults.count >= count
+    case .all: return false
+    }
+  }
+
+  private func truncatedResults<T>(_ results: [T], limit: Limit) -> [T] {
+    switch limit {
+    case .limit(let count): return Array(results.prefix(count))
+    case .all: return results
     }
   }
 }

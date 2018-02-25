@@ -22,7 +22,13 @@ public final class UsersClient: ApiClient {
     return patch(apiUrl: .currentUser, object: update)
   }
 
-  public func listAll(since userId: Int? = nil) -> Observable<[User]> {
-    return getObject(apiUrl: .users, parameters: userId.map({ CustomApiParameter(name: "since", value: $0) }))
+  public func listAll(since userId: Int? = nil, limit: Int = 100) -> Observable<[User]> {
+    return getObjects(apiUrl: .users,
+                      limit: limit,
+                      parameters: userId.map({ CustomApiParameter(name: "since", value: $0) }))
+  }
+  
+  public func listAllPaginated(since userId: Int? = nil) -> Observable<PageResult<User>> {
+    return getPaginatedObjects(apiUrl: .users, parameters: userId.map({ CustomApiParameter(name: "since", value: $0) }))
   }
 }

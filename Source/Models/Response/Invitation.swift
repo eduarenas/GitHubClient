@@ -6,12 +6,12 @@
 //  Copyright © 2018 GameChanger. All rights reserved.
 //
 
-public struct Invitation {
+public struct Invitation: Decodable {
   let id: Int
   let repository: Repository
   let invetee: User
   let inviter: User
-  let permissions: Permission
+  let permissions: InvitationPermissions
   let createdAt: Date
   let url: String
   let htmlUrl: String

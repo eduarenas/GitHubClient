@@ -6,6 +6,8 @@
 //  Copyright © 2018 GameChanger. All rights reserved.
 //
 
+import Foundation
+
 public struct Invitation: Decodable {
   let id: Int
   let repository: Repository

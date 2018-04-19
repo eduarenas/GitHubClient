@@ -6,6 +6,7 @@
 //  Copyright © 2017 GameChanger. All rights reserved.
 //
 
+import Foundation
 import RxSwift
 
 public class ApiClient {

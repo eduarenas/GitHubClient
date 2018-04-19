@@ -6,6 +6,8 @@
 //  Copyright © 2018 GameChanger. All rights reserved.
 //
 
+import Foundation
+
 struct PageLinks {
   let first: String?
   let previous: String?

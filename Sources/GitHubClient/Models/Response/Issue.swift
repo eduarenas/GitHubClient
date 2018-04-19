@@ -6,6 +6,8 @@
 //  Copyright © 2017 GameChanger. All rights reserved.
 //
 
+import Foundation
+
 public struct Issue: Decodable {
 
   let id: Int

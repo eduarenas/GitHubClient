@@ -212,28 +212,28 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A0229ABF2088E4CF005BB1E0 /* PBXContainerItemProxy */ = {
+		A0229AED20894059005BB1E0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "RxSwift::RxSwift";
 			remoteInfo = RxSwift;
 		};
-		A0229AC02088E4CF005BB1E0 /* PBXContainerItemProxy */ = {
+		A0229AEE20894059005BB1E0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "GitHubClient::GitHubClient";
 			remoteInfo = GitHubClient;
 		};
-		A0229AC12088E4CF005BB1E0 /* PBXContainerItemProxy */ = {
+		A0229AEF20894059005BB1E0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "RxSwift::RxSwift";
 			remoteInfo = RxSwift;
 		};
-		A0229AC22088E4D0005BB1E0 /* PBXContainerItemProxy */ = {
+		A0229AF020894059005BB1E0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
@@ -602,7 +602,7 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -611,7 +611,6 @@
 				OBJ_53 /* Dependencies */,
 				OBJ_211 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_50 /* Tests */ = {
@@ -929,7 +928,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_211 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1171,22 +1170,22 @@
 		OBJ_236 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "GitHubClient::GitHubClient" /* GitHubClient */;
-			targetProxy = A0229AC02088E4CF005BB1E0 /* PBXContainerItemProxy */;
+			targetProxy = A0229AEE20894059005BB1E0 /* PBXContainerItemProxy */;
 		};
 		OBJ_238 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "RxSwift::RxSwift" /* RxSwift */;
-			targetProxy = A0229AC12088E4CF005BB1E0 /* PBXContainerItemProxy */;
+			targetProxy = A0229AEF20894059005BB1E0 /* PBXContainerItemProxy */;
 		};
 		OBJ_279 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "RxSwift::RxSwift" /* RxSwift */;
-			targetProxy = A0229ABF2088E4CF005BB1E0 /* PBXContainerItemProxy */;
+			targetProxy = A0229AED20894059005BB1E0 /* PBXContainerItemProxy */;
 		};
 		OBJ_438 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "GitHubClient::GitHubClientTests" /* GitHubClientTests */;
-			targetProxy = A0229AC22088E4D0005BB1E0 /* PBXContainerItemProxy */;
+			targetProxy = A0229AF020894059005BB1E0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1274,7 +1273,6 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = GitHubClient.xcodeproj/GitHubClient_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = GitHubClient;
@@ -1297,7 +1295,6 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = GitHubClient.xcodeproj/GitHubClient_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = GitHubClient;

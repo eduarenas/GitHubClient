@@ -6,6 +6,8 @@
 //  Copyright © 2017 GameChanger. All rights reserved.
 //
 
+import Foundation
+
 enum HTTPServiceError: Error {
   case invalidUrl(url: String)
   case invalidResponse

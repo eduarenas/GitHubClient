@@ -6,6 +6,8 @@
 //  Copyright © 2018 GameChanger. All rights reserved.
 //
 
+import Foundation
+
 public struct Authorization: Decodable {
   public let id: Int
   public let url: String

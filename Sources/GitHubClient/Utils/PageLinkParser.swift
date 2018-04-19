@@ -21,8 +21,8 @@ final class PageLinkParser {
 
   static func parse(linkString: String) -> PageLinks {
     let matches = regex.matches(in: linkString, range: NSRange(linkString.startIndex..., in: linkString))
-    let relations = matches.map { String(linkString[Range($0.range(withName: "rel"), in: linkString)!]) }
-    let urls = matches.map { String(linkString[Range($0.range(withName: "url"), in: linkString)!]) }
+    let relations = matches.map { String(linkString[Range($0.range(at: 2), in: linkString)!]) }
+    let urls = matches.map { String(linkString[Range($0.range(at: 1), in: linkString)!]) }
     let dictionary = Dictionary(uniqueKeysWithValues: zip(relations, urls))
 
     return PageLinks(first: dictionary["first"],

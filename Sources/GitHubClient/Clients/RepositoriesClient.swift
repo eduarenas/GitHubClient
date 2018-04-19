@@ -8,6 +8,7 @@
 
 import RxSwift
 
+@available(OSX 10.12, *)
 public final class RepositoriesClient: ApiClient {
   
   public func listAllForCurrentUser(visibility: Visibility? = nil,
@@ -81,6 +82,7 @@ public final class RepositoriesClient: ApiClient {
   }
 }
 
+@available(OSX 10.12, *)
 public extension RepositoriesClient {
   
   public enum Visibility: String, ApiParameter {

@@ -8,6 +8,7 @@
 
 import RxSwift
 
+@available(OSX 10.12, *)
 public final class UsersClient: ApiClient {
 
   public func get(username: String) -> Observable<User> {

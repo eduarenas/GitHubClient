@@ -12,69 +12,69 @@ import RxSwift
 public final class IssuesClient: ApiClient {
   
   public func listAllAssignedToCurrentUser(filter: Filter? = nil,
-                                    state: State? = nil,
-                                    labels: [String]? = nil,
-                                    sort: Sort? = nil,
-                                    direction: Direction? = nil,
-                                    since: String? = nil,
-                                    limit: Int? = nil) -> Observable<[Issue]> {
+                                           state: State? = nil,
+                                           labels: [String]? = nil,
+                                           sort: Sort? = nil,
+                                           direction: Direction? = nil,
+                                           since: String? = nil,
+                                           limit: Int? = nil) -> Observable<[Issue]> {
     return getObjects(apiUrl: .currentUserAssignedIssues,
                       limit: limit,
                       parameters: filter, state, labelsParameter(labels), sort, direction, sinceParameter(since))
   }
   
   public func listAllAssignedToCurrentUserPaginated(filter: Filter? = nil,
-                                             state: State? = nil,
-                                             labels: [String]? = nil,
-                                             sort: Sort? = nil,
-                                             direction: Direction? = nil,
-                                             since: String? = nil) -> Observable<PageResult<Issue>> {
+                                                    state: State? = nil,
+                                                    labels: [String]? = nil,
+                                                    sort: Sort? = nil,
+                                                    direction: Direction? = nil,
+                                                    since: String? = nil) -> Observable<PageResult<Issue>> {
     return getPaginatedObjects(apiUrl: .currentUserAssignedIssues,
                                parameters: filter, state, labelsParameter(labels), sort, direction, sinceParameter(since))
   }
   
   public func listAllForOwnedAndMemberRepos(filter: Filter? = nil,
-                                     state: State? = nil,
-                                     labels: [String]? = nil,
-                                     sort: Sort? = nil,
-                                     direction: Direction? = nil,
-                                     since: String? = nil,
-                                     limit: Int? = nil) -> Observable<[Issue]> {
+                                            state: State? = nil,
+                                            labels: [String]? = nil,
+                                            sort: Sort? = nil,
+                                            direction: Direction? = nil,
+                                            since: String? = nil,
+                                            limit: Int? = nil) -> Observable<[Issue]> {
     return getObjects(apiUrl: .currentUserOwnedAndMemberReposIssues,
                       limit: limit,
                       parameters: filter, state, labelsParameter(labels), sort, direction, sinceParameter(since))
   }
   
   public func listAllForOwnedAndMemberReposPaginated(filter: Filter? = nil,
-                                              state: State? = nil,
-                                              labels: [String]? = nil,
-                                              sort: Sort? = nil,
-                                              direction: Direction? = nil,
-                                              since: String? = nil) -> Observable<PageResult<Issue>> {
+                                                     state: State? = nil,
+                                                     labels: [String]? = nil,
+                                                     sort: Sort? = nil,
+                                                     direction: Direction? = nil,
+                                                     since: String? = nil) -> Observable<PageResult<Issue>> {
     return getPaginatedObjects(apiUrl: .currentUserOwnedAndMemberReposIssues,
                                parameters: filter, state, labelsParameter(labels), sort, direction, sinceParameter(since))
   }
   
   public func listAllForOrganization(org: String,
-                              filter: Filter? = nil,
-                              state: State? = nil,
-                              labels: [String]? = nil,
-                              sort: Sort? = nil,
-                              direction: Direction? = nil,
-                              since: String? = nil,
-                              limit: Int? = nil) -> Observable<[Issue]> {
+                                     filter: Filter? = nil,
+                                     state: State? = nil,
+                                     labels: [String]? = nil,
+                                     sort: Sort? = nil,
+                                     direction: Direction? = nil,
+                                     since: String? = nil,
+                                     limit: Int? = nil) -> Observable<[Issue]> {
     return getObjects(apiUrl: .currentUserOrganizationIssues(org: org),
                       limit: limit,
                       parameters: filter, state, labelsParameter(labels), sort, direction, sinceParameter(since))
   }
   
   public func listAllForOrganizationPaginated(org: String,
-                                       filter: Filter? = nil,
-                                       state: State? = nil,
-                                       labels: [String]? = nil,
-                                       sort: Sort? = nil,
-                                       direction: Direction? = nil,
-                                       since: String? = nil) -> Observable<PageResult<Issue>> {
+                                              filter: Filter? = nil,
+                                              state: State? = nil,
+                                              labels: [String]? = nil,
+                                              sort: Sort? = nil,
+                                              direction: Direction? = nil,
+                                              since: String? = nil) -> Observable<PageResult<Issue>> {
     return getPaginatedObjects(apiUrl: .currentUserOrganizationIssues(org: org),
                                parameters: filter, state, labelsParameter(labels), sort, direction, sinceParameter(since))
   }

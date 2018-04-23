@@ -11,7 +11,7 @@ import RxSwift
 @available(OSX 10.12, *)
 public final class IssuesClient: ApiClient {
   
-  func listAllAssignedToCurrentUser(filter: Filter? = nil,
+  public func listAllAssignedToCurrentUser(filter: Filter? = nil,
                                     state: State? = nil,
                                     labels: [String]? = nil,
                                     sort: Sort? = nil,
@@ -23,7 +23,7 @@ public final class IssuesClient: ApiClient {
                       parameters: filter, state, labelsParameter(labels), sort, direction, sinceParameter(since))
   }
   
-  func listAllAssignedToCurrentUserPaginated(filter: Filter? = nil,
+  public func listAllAssignedToCurrentUserPaginated(filter: Filter? = nil,
                                              state: State? = nil,
                                              labels: [String]? = nil,
                                              sort: Sort? = nil,
@@ -33,7 +33,7 @@ public final class IssuesClient: ApiClient {
                                parameters: filter, state, labelsParameter(labels), sort, direction, sinceParameter(since))
   }
   
-  func listAllForOwnedAndMemberRepos(filter: Filter? = nil,
+  public func listAllForOwnedAndMemberRepos(filter: Filter? = nil,
                                      state: State? = nil,
                                      labels: [String]? = nil,
                                      sort: Sort? = nil,
@@ -45,7 +45,7 @@ public final class IssuesClient: ApiClient {
                       parameters: filter, state, labelsParameter(labels), sort, direction, sinceParameter(since))
   }
   
-  func listAllForOwnedAndMemberReposPaginated(filter: Filter? = nil,
+  public func listAllForOwnedAndMemberReposPaginated(filter: Filter? = nil,
                                               state: State? = nil,
                                               labels: [String]? = nil,
                                               sort: Sort? = nil,
@@ -55,7 +55,7 @@ public final class IssuesClient: ApiClient {
                                parameters: filter, state, labelsParameter(labels), sort, direction, sinceParameter(since))
   }
   
-  func listAllForOrganization(org: String,
+  public func listAllForOrganization(org: String,
                               filter: Filter? = nil,
                               state: State? = nil,
                               labels: [String]? = nil,
@@ -68,7 +68,7 @@ public final class IssuesClient: ApiClient {
                       parameters: filter, state, labelsParameter(labels), sort, direction, sinceParameter(since))
   }
   
-  func listAllForOrganizationPaginated(org: String,
+  public func listAllForOrganizationPaginated(org: String,
                                        filter: Filter? = nil,
                                        state: State? = nil,
                                        labels: [String]? = nil,
@@ -79,15 +79,15 @@ public final class IssuesClient: ApiClient {
                                parameters: filter, state, labelsParameter(labels), sort, direction, sinceParameter(since))
   }
   
-  func get(owner: String, repo: String, number: Int) -> Observable<Issue> {
+  public func get(owner: String, repo: String, number: Int) -> Observable<Issue> {
     return getObject(apiUrl: .repositoryIssue(owner: owner, repo: repo, number: number))
   }
   
-  func create(_ issue: NewIssue, owner: String, repo: String) -> Observable<Issue> {
+  public func create(_ issue: NewIssue, owner: String, repo: String) -> Observable<Issue> {
     return post(apiUrl: .repositoryIssues(owner: owner, repo: repo), object: issue)
   }
   
-  func edit(owner: String, repo: String, number: Int, update: IssueUpdate) -> Observable<Issue> {
+  public func edit(owner: String, repo: String, number: Int, update: IssueUpdate) -> Observable<Issue> {
     return patch(apiUrl: .repositoryIssue(owner: owner, repo: repo, number: number), object: update)
   }
 }

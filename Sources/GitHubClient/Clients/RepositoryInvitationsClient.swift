@@ -11,15 +11,15 @@ import RxSwift
 @available(OSX 10.12, *)
 public final class RepositoryInvitationsClient: ApiClient {
   
-  func listAll(owner: String, repo: String, limit: Int?) -> Observable<[Invitation]> {
+  public func listAll(owner: String, repo: String, limit: Int?) -> Observable<[Invitation]> {
     return getObjects(apiUrl: .invitations(owner: owner, repo: repo), limit: limit)
   }
   
-  func listAllPaginated(owner: String, repo: String) -> Observable<PageResult<Invitation>> {
+  public func listAllPaginated(owner: String, repo: String) -> Observable<PageResult<Invitation>> {
     return getPaginatedObjects(apiUrl: .invitations(owner: owner, repo: repo))
   }
   
-  func delete(owner: String, repo: String, id: Int) -> Completable {
+  public func delete(owner: String, repo: String, id: Int) -> Completable {
     return delete(apiUrl: .invitation(owner: owner, repo: repo, id: id))
   }
   

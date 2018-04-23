@@ -21,7 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		A0721342208A957B00FDACC0 /* OrganizationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0721341208A957B00FDACC0 /* OrganizationClient.swift */; };
+		A0721342208A957B00FDACC0 /* OrganizationsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0721341208A957B00FDACC0 /* OrganizationsClient.swift */; };
 		A072134B208E4CA300FDACC0 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A072134A208E4CA300FDACC0 /* Organization.swift */; };
 		A072134D208E51A300FDACC0 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = A072134C208E51A300FDACC0 /* Plan.swift */; };
 		A072134F208E560400FDACC0 /* OrganizationUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A072134E208E560400FDACC0 /* OrganizationUpdate.swift */; };
@@ -247,7 +247,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A0721341208A957B00FDACC0 /* OrganizationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationClient.swift; sourceTree = "<group>"; };
+		A0721341208A957B00FDACC0 /* OrganizationsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsClient.swift; sourceTree = "<group>"; };
 		A072134A208E4CA300FDACC0 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		A072134C208E51A300FDACC0 /* Plan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
 		A072134E208E560400FDACC0 /* OrganizationUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationUpdate.swift; sourceTree = "<group>"; };
@@ -487,7 +487,7 @@
 				OBJ_17 /* RepositoryCollaboratorsClient.swift */,
 				OBJ_18 /* RepositoryInvitationsClient.swift */,
 				OBJ_19 /* UsersClient.swift */,
-				A0721341208A957B00FDACC0 /* OrganizationClient.swift */,
+				A0721341208A957B00FDACC0 /* OrganizationsClient.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -1015,7 +1015,7 @@
 				A072134F208E560400FDACC0 /* OrganizationUpdate.swift in Sources */,
 				OBJ_271 /* Repository.swift in Sources */,
 				OBJ_272 /* User.swift in Sources */,
-				A0721342208A957B00FDACC0 /* OrganizationClient.swift in Sources */,
+				A0721342208A957B00FDACC0 /* OrganizationsClient.swift in Sources */,
 				OBJ_273 /* UserType.swift in Sources */,
 				A072134D208E51A300FDACC0 /* Plan.swift in Sources */,
 				OBJ_274 /* IssueState.swift in Sources */,

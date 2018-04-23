@@ -1,5 +1,5 @@
 //
-//  OrganizationClient.swift
+//  OrganizationsClient.swift
 //  GitHubClient
 //
 //  Created by Eduardo Arenas on 4/20/18.
@@ -9,6 +9,8 @@ import RxSwift
 
 @available(OSX 10.12, *)
 final public class OrganizationsClient: ApiClient {
+
+  // Mark: Organizations
 
   public func listAllForCurrentUser(limit: Int? = nil) -> Observable<[Organization]> {
     return getObjects(apiUrl: .currentUserOrganizations, limit: limit)
@@ -40,5 +42,30 @@ final public class OrganizationsClient: ApiClient {
 
   public func edit(org: String, update: OrganizationUpdate) -> Observable<Organization> {
     return patch(apiUrl: .organization(org: org), object: update)
+  }
+
+  // MARK: Outside Collaborators
+
+  public func listOutsideCollaborators(org: String, filter: CollaboratorsFilter? = nil, limit: Int? = nil) -> Observable<[User]> {
+    return getObjects(apiUrl: .organizationOutsideCollaborators(org: org), limit: limit, parameters: filter)
+  }
+
+  public func listOutsideCollaboratorsPaginated(org: String, filter: CollaboratorsFilter? = nil) -> Observable<PageResult<User>> {
+    return getPaginatedObjects(apiUrl: .organizationOutsideCollaborators(org: org), parameters: filter)
+  }
+
+  public func removeOutsideCollaborator(org: String, username: String) -> Completable {
+    return delete(apiUrl: .organizationOutsideCollaborator(org: org, username: username))
+  }
+}
+
+@available(OSX 10.12, *)
+public extension OrganizationsClient {
+
+  public enum CollaboratorsFilter: String, ApiParameter {
+    public var name: String { return "filter" }
+
+    case twoFactorAuthDisabled
+    case all
   }
 }

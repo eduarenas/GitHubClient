@@ -12,7 +12,7 @@ public struct Issue: Decodable {
 
   public let id: Int
   public let url: String
-  public let htmlUrl: String
+  public let htmlUrl: String?
   public let commentsUrl: String
   public let eventsUrl: String
   public let number: Int
@@ -33,4 +33,29 @@ public struct Issue: Decodable {
   public let locked: Bool
   public let repository: Repository?
 
+}
+
+extension Issue {
+  enum CodingKeys: String, CodingKey {
+    case id
+    case url
+    case htmlUrl = "html_url"
+    case commentsUrl = "comments_url"
+    case eventsUrl = "events_url"
+    case number
+    case state
+    case title
+    case body
+    case closedBy = "closed_by"
+    case user
+    case labels
+    case assignee
+    case assignees
+    case comments
+    case closedAt = "closed_at"
+    case createdAt = "created_at"
+    case updatedAt = "updated_at"
+    case locked
+    case repository
+  }
 }

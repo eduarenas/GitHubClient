@@ -20,7 +20,17 @@ public struct RepositoryUpdate: Encodable {
   public let allowMergeCommit: Bool?
   public let allowRebaseMerge: Bool?
 
-  public init(name: String, description: String? = nil, homepage: String? = nil, isPrivate: Bool? = nil, hasIssues: Bool? = nil, hasProjects: Bool? = nil, hasWiki: Bool? = nil, defaultBranch: String? = nil, allowSquashMerge: Bool? = nil, allowMergeCommit: Bool? = nil, allowRebaseMerge: Bool? = nil) {
+  public init(name: String,
+              description: String? = nil,
+              homepage: String? = nil,
+              isPrivate: Bool? = nil,
+              hasIssues: Bool? = nil,
+              hasProjects: Bool? = nil,
+              hasWiki: Bool? = nil,
+              defaultBranch: String? = nil,
+              allowSquashMerge: Bool? = nil,
+              allowMergeCommit: Bool? = nil,
+              allowRebaseMerge: Bool? = nil) {
     self.name = name
     self.description = description
     self.homepage = homepage

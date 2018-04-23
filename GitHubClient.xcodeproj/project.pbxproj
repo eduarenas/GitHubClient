@@ -21,6 +21,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		A0721342208A957B00FDACC0 /* OrganizationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0721341208A957B00FDACC0 /* OrganizationClient.swift */; };
+		A072134B208E4CA300FDACC0 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A072134A208E4CA300FDACC0 /* Organization.swift */; };
+		A072134D208E51A300FDACC0 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = A072134C208E51A300FDACC0 /* Plan.swift */; };
+		A072134F208E560400FDACC0 /* OrganizationUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A072134E208E560400FDACC0 /* OrganizationUpdate.swift */; };
 		OBJ_220 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_226 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_210 /* Package.swift */; };
 		OBJ_232 /* GitHubClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* GitHubClientTests.swift */; };
@@ -243,6 +247,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A0721341208A957B00FDACC0 /* OrganizationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationClient.swift; sourceTree = "<group>"; };
+		A072134A208E4CA300FDACC0 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
+		A072134C208E51A300FDACC0 /* Plan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
+		A072134E208E560400FDACC0 /* OrganizationUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationUpdate.swift; sourceTree = "<group>"; };
 		"GitHubClient::GitHubClient::Product" /* GitHubClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GitHubClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"GitHubClient::GitHubClientTests::Product" /* GitHubClientTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = GitHubClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_100 /* DistinctUntilChanged.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistinctUntilChanged.swift; sourceTree = "<group>"; };
@@ -479,6 +487,7 @@
 				OBJ_17 /* RepositoryCollaboratorsClient.swift */,
 				OBJ_18 /* RepositoryInvitationsClient.swift */,
 				OBJ_19 /* UsersClient.swift */,
+				A0721341208A957B00FDACC0 /* OrganizationClient.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -564,6 +573,7 @@
 				OBJ_31 /* NewRepository.swift */,
 				OBJ_32 /* RepositoryUpdate.swift */,
 				OBJ_33 /* UserUpdate.swift */,
+				A072134E208E560400FDACC0 /* OrganizationUpdate.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -581,6 +591,8 @@
 				OBJ_42 /* Repository.swift */,
 				OBJ_43 /* User.swift */,
 				OBJ_44 /* UserType.swift */,
+				A072134A208E4CA300FDACC0 /* Organization.swift */,
+				A072134C208E51A300FDACC0 /* Plan.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -990,6 +1002,7 @@
 				OBJ_259 /* NewAuthorization.swift in Sources */,
 				OBJ_260 /* NewIssue.swift in Sources */,
 				OBJ_261 /* NewRepository.swift in Sources */,
+				A072134B208E4CA300FDACC0 /* Organization.swift in Sources */,
 				OBJ_262 /* RepositoryUpdate.swift in Sources */,
 				OBJ_263 /* UserUpdate.swift in Sources */,
 				OBJ_264 /* App.swift in Sources */,
@@ -999,9 +1012,12 @@
 				OBJ_268 /* Issue.swift in Sources */,
 				OBJ_269 /* IssueLabel.swift in Sources */,
 				OBJ_270 /* PageResult.swift in Sources */,
+				A072134F208E560400FDACC0 /* OrganizationUpdate.swift in Sources */,
 				OBJ_271 /* Repository.swift in Sources */,
 				OBJ_272 /* User.swift in Sources */,
+				A0721342208A957B00FDACC0 /* OrganizationClient.swift in Sources */,
 				OBJ_273 /* UserType.swift in Sources */,
+				A072134D208E51A300FDACC0 /* Plan.swift in Sources */,
 				OBJ_274 /* IssueState.swift in Sources */,
 				OBJ_275 /* PageLinkParser.swift in Sources */,
 				OBJ_276 /* RxExtensions.swift in Sources */,

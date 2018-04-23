@@ -9,12 +9,12 @@
 import Foundation
 
 public struct Invitation: Decodable {
-  let id: Int
-  let repository: Repository
-  let invetee: User
-  let inviter: User
-  let permissions: InvitationPermissions
-  let createdAt: Date
-  let url: String
-  let htmlUrl: String
+  public let id: Int
+  public let repository: Repository
+  public let invetee: User
+  public let inviter: User
+  public let permissions: InvitationPermissions
+  public let createdAt: Date
+  public let url: String
+  public let htmlUrl: String
 }

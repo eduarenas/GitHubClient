@@ -11,7 +11,7 @@ import Foundation
 public struct Invitation: Decodable {
   public let id: Int
   public let repository: Repository
-  public let invetee: User
+  public let invitee: User
   public let inviter: User
   public let permissions: InvitationPermissions
   public let createdAt: Date
@@ -23,7 +23,7 @@ extension Invitation {
   enum CodingKeys: String, CodingKey {
     case id
     case repository
-    case invetee
+    case invitee
     case inviter
     case permissions
     case createdAt = "created_at"

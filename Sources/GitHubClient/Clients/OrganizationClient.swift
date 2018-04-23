@@ -8,7 +8,7 @@
 import RxSwift
 
 @available(OSX 10.12, *)
-final class OrganizationsClient: ApiClient {
+final public class OrganizationsClient: ApiClient {
 
   public func listAllForCurrentUser(limit: Int? = nil) -> Observable<[Organization]> {
     return getObjects(apiUrl: .currentUserOrganizations, limit: limit)

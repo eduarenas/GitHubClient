@@ -11,7 +11,7 @@ import RxSwift
 @available(OSX 10.12, *)
 public final class RepositoryInvitationsClient: ApiClient {
   
-  public func listAll(owner: String, repo: String, limit: Int?) -> Observable<[Invitation]> {
+  public func listAll(owner: String, repo: String, limit: Int? = nil) -> Observable<[Invitation]> {
     return getObjects(apiUrl: .invitations(owner: owner, repo: repo), limit: limit)
   }
   

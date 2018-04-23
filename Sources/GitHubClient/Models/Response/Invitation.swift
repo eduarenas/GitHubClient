@@ -18,3 +18,16 @@ public struct Invitation: Decodable {
   public let url: String
   public let htmlUrl: String
 }
+
+extension Invitation {
+  enum CodingKeys: String, CodingKey {
+    case id
+    case repository
+    case invetee
+    case inviter
+    case permissions
+    case createdAt = "created_at"
+    case url
+    case htmlUrl = "html_url"
+  }
+}

@@ -59,10 +59,12 @@ final public class OrganizationsClient: ApiClient {
   }
 }
 
+// Mark: Types
+
 @available(OSX 10.12, *)
 public extension OrganizationsClient {
 
-  public enum CollaboratorsFilter: String, ApiParameter {
+  enum CollaboratorsFilter: String, ApiParameter {
     public var name: String { return "filter" }
 
     case twoFactorAuthDisabled

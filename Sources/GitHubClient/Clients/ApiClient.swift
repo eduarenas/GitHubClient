@@ -37,7 +37,7 @@ public class ApiClient {
   }
   
   func getObjects<T: Decodable>(apiUrl: ApiUrl, limit: Int?, parameters: ApiParameter?...) -> Observable<[T]> {
-    var unwrappedParameters = parameters.flatMap({ $0 })
+    var unwrappedParameters = parameters.compactMap({ $0 })
     unwrappedParameters.append(CustomApiParameter(name: "per_page", value: limit ?? 100))
     let queryDict = CustomApiParameter.queryDict(forParameters: unwrappedParameters)
     
@@ -49,7 +49,7 @@ public class ApiClient {
   
   func getPaginatedObjects<T: Decodable>(apiUrl: ApiUrl,
                                          parameters: ApiParameter?...) -> Observable<PageResult<T>> {
-    let unwrappedParameters = parameters.flatMap({ $0 })
+    let unwrappedParameters = parameters.compactMap({ $0 })
     let queryDict = CustomApiParameter.queryDict(forParameters: unwrappedParameters)
     return getPaginated(url: apiUrl.fullPath,
                         queryDict: queryDict)
@@ -94,7 +94,7 @@ public class ApiClient {
   }
   
   private func get(apiUrl: ApiUrl, parameters: [ApiParameter?]) -> Observable<(Data, HTTPURLResponse)> {
-    let unwrappedParameters = parameters.flatMap({ $0 })
+    let unwrappedParameters = parameters.compactMap({ $0 })
     let queryDict = CustomApiParameter.queryDict(forParameters: unwrappedParameters)
     return httpService.get(url: apiUrl.fullPath, query: queryDict, headers: headers)
   }

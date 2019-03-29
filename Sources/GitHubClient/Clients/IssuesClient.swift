@@ -95,7 +95,7 @@ public final class IssuesClient: ApiClient {
 @available(OSX 10.12, *)
 public extension IssuesClient {
   
-  public enum Filter: String, ApiParameter {
+  enum Filter: String, ApiParameter {
     public var name: String { return "filter" }
     
     case assigned
@@ -105,7 +105,7 @@ public extension IssuesClient {
     case all
   }
   
-  public enum State: String, ApiParameter {
+  enum State: String, ApiParameter {
     public var name: String { return "state" }
     
     case open
@@ -113,7 +113,7 @@ public extension IssuesClient {
     case all
   }
   
-  public enum Sort: String, ApiParameter {
+  enum Sort: String, ApiParameter {
     public var name: String { return "sort" }
     
     case created

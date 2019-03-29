@@ -85,7 +85,7 @@ public final class RepositoriesClient: ApiClient {
 @available(OSX 10.12, *)
 public extension RepositoriesClient {
   
-  public enum Visibility: String, ApiParameter {
+  enum Visibility: String, ApiParameter {
     public var name: String { return "visibility" }
     
     case all
@@ -93,7 +93,7 @@ public extension RepositoriesClient {
     case `public`
   }
   
-  public enum CurrentUserRepoType: String, ApiParameter {
+  enum CurrentUserRepoType: String, ApiParameter {
     public var name: String { return "type" }
     
     case all
@@ -103,7 +103,7 @@ public extension RepositoriesClient {
     case `public`
   }
   
-  public enum UserRepoType: String, ApiParameter {
+  enum UserRepoType: String, ApiParameter {
     public var name: String { return "type" }
     
     case all
@@ -111,7 +111,7 @@ public extension RepositoriesClient {
     case owner
   }
   
-  public enum OrgRepoType: String, ApiParameter {
+  enum OrgRepoType: String, ApiParameter {
     public var name: String { return "type" }
     
     case all
@@ -122,7 +122,7 @@ public extension RepositoriesClient {
     case source
   }
   
-  public enum Sort: String, ApiParameter {
+  enum Sort: String, ApiParameter {
     public var name: String { return "sort" }
     
     case created

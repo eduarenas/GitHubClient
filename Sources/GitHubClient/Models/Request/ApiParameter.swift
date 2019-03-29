@@ -11,8 +11,7 @@ public protocol ApiParameter {
   var value: CustomStringConvertible { get }
 }
 
-extension ApiParameter where Self: RawRepresentable {
-  public typealias RawValue = String
+extension ApiParameter where Self: RawRepresentable, Self.RawValue == String {
   public var value: CustomStringConvertible {
     return self.rawValue
   }

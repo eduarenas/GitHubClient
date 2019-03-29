@@ -252,7 +252,7 @@
 		A072134C208E51A300FDACC0 /* Plan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
 		A072134E208E560400FDACC0 /* OrganizationUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationUpdate.swift; sourceTree = "<group>"; };
 		"GitHubClient::GitHubClient::Product" /* GitHubClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GitHubClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"GitHubClient::GitHubClientTests::Product" /* GitHubClientTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = GitHubClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"GitHubClient::GitHubClientTests::Product" /* GitHubClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = GitHubClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_100 /* DistinctUntilChanged.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistinctUntilChanged.swift; sourceTree = "<group>"; };
 		OBJ_101 /* Do.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Do.swift; sourceTree = "<group>"; };
 		OBJ_102 /* ElementAt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementAt.swift; sourceTree = "<group>"; };
@@ -932,12 +932,21 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 9999;
+				TargetAttributes = {
+					"GitHubClient::GitHubClient" = {
+						LastSwiftMigration = 1020;
+					};
+					"GitHubClient::GitHubClientTests" = {
+						LastSwiftMigration = 1020;
+					};
+				};
 			};
 			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "GitHubClient" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = OBJ_5;
@@ -1255,7 +1264,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = GitHubClientTests;
 			};
 			name = Debug;
@@ -1273,7 +1282,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = GitHubClientTests;
 			};
 			name = Release;
@@ -1295,7 +1304,7 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = GitHubClient;
 			};
 			name = Debug;
@@ -1317,7 +1326,7 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = GitHubClient;
 			};
 			name = Release;
